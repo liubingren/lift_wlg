@@ -1,0 +1,451 @@
+//The css code below is created by http://sjli.github.io/spritemaker_extjs/example.html
+
+/*-----The sprites----*/
+.alarmType,
+.back,
+.user {
+  display: inline-block;
+  *zoom: 1;
+  vertical-align: middle;
+  background: url("../img/largescreen_splite.png") -9999px -9999px no-repeat;
+}
+
+.alarmType {
+  width: 19px;
+  height: 16px;
+  background-position: 0 0;
+}
+
+.back {
+  width: 18px;
+  height: 18px;
+  background-position: -29px 0;
+}
+
+
+.user {
+  width: 18px;
+  height: 18px;
+  background-position: -87px 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: url("../img/largescreen-bg.jpg");
+  overflow: hidden;
+  padding: 30px 40px 25px 40px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  .header {
+    width: 100%;
+    height: 5.5%;
+    overflow: hidden;
+    background: url("../img/nav-bg.png") repeat top left;
+    background-size: 100% 100%;
+    div{
+      width: 33.3%;
+      height: 100%;
+      float:left;
+      color: #ffffff;
+      display: flex;
+      align-items: center
+    }
+    div.time-bar{
+      text-indent: 20px;
+      font-size: 16px;
+      color:#11def9;
+    }
+    div.header-title{
+      background: url("../img/largescreentitle.png") no-repeat center center;
+
+    }
+    div.backToHome{
+      position: relative;
+      div{
+        position: absolute;
+        width: 35%;
+        height: 100%;
+        top: 0px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color:#11def9;
+        .back{
+          margin-right: 10px;
+        }
+        @media (max-width: 1366px) {
+          .backText{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    height: 87%;
+    overflow: hidden;
+    .content-left {
+      float: left;
+      width: 49.8%;
+      height: 99%;
+      margin: 5px 0px 0px 0.1%;
+      #distribution-map {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .mapTitle {
+          color: #FFFFFF;
+          font-size: 18px;
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          span{
+            font-size: 24px;
+            font-weight: bold;
+          }
+        }
+        ul.typeUl {
+          position: absolute;
+          width: 60px;
+          right: 40px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #ffffff;
+          list-style-type: none;
+          li {
+            width: 100%;
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            justify-content: center;
+            div {
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
+              margin-right: 8px;
+            }
+            .green {
+              background: #20c22b;
+            }
+            .red {
+              background: red;
+            }
+            .yellow {
+              background: #fff71f;
+            }
+            .grey {
+              background: #bfbfbf;
+            }
+          }
+        }
+        .meterInfo {
+          width: 200px;
+          height: 160px;
+          position: absolute;
+          border-radius: 13px;
+          right: 100px;
+          bottom: 8%;
+          background-color: rgba(0, 0, 0, 0.2);
+          background-image: url("../img/lightRoundBorder.png");
+          font-size: 14px;
+          box-shadow: 0px 0px 20px #0dbfd6;
+          .title {
+            color: #ffffff;
+            padding: 15px 50px;
+            font-size: 16px;
+            text-align: center;
+            border-bottom: 1px solid #0dbfd6;
+            margin-bottom: 15px;
+          }
+          p {
+            color: #ffffff;
+            margin-left: 22px;
+            margin-bottom: 5px;
+            display: flex;
+            flex-flow: row nowrap;
+            i {
+              color: #ffffff;
+              font-style: normal;
+              display: inline-block;
+              white-space: nowrap;
+              width: 7em;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+    }
+    .content-right {
+      float: right;
+      width: 49.8%;
+      height: 100%;
+      .new-alarm {
+        width: 100%;
+        height: 49.8%;
+        background: url("../img/newalarm-bg.png") no-repeat top left;
+        margin-bottom: 0.4%;
+        background-size: 100% 100%;
+        overflow: hidden;
+        .title{
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          text-indent: 20px;
+          color: #FFFFFF;
+          font-size: 18px;
+        }
+        .content{
+          width: 100%;
+          padding-left: 10%;
+          overflow: hidden;
+          .newalarmRound{
+            float: left;
+            width: 20px;
+            height: 93%;
+            background: url("../img/newalarmRound.png") repeat-y top left;
+          }
+          ul{
+            width:82%;
+            float: left;
+            li{
+              height: 30px;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              margin-bottom: 4.5px;
+              background: url("../img/newalarmRectangle.png") no-repeat top left;
+              background-size: 100% 30px;
+              color: #FFFFFF;
+              div{
+                width:33.3% ;
+                align-items: center;
+                margin-right: 12px;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                .user,.alarmType{
+                  margin-right: 3px;
+                }
+                .text{
+                  overflow: hidden;
+                  text-overflow:ellipsis;
+                  white-space: nowrap;
+                }
+              }
+              div.left{
+                text-indent: 12px;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+              }
+              div.right{
+                margin-right: 0px;
+              }
+            }
+          }
+        }
+      }
+      .chart-wrapper {
+        width: 100%;
+        height: 49.8%;
+        overflow: hidden;
+        .alarmTopTen {
+          float: left;
+          width: 49.8%;
+          height: 100%;
+          background: url("../img/alarmTOP10-bg.png") no-repeat top left;
+          background-size: 100% 100%;
+          .alarmTop{
+            float: left;
+          }
+        }
+        .alarmStatistics {
+          float: right;
+          width: 49.8%;
+          height: 100%;
+          background: url("../img/alarmstatistics-bg.png") no-repeat top left;
+          background-size: 100% 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          .alarmTitle{
+            position: absolute;
+            top:15px;
+            left: 20px;
+            color: #FFFFFF;
+            font-size: 18px;
+          }
+          .warning {
+            width: 95%;
+            height:300px;
+            position: absolute;
+            top: 42%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+          }
+          .container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            line-height: 70px;
+            color: #5596ff;
+            .circle {
+              position: absolute;
+              border-radius: 50%;
+              opacity: 0;
+              width: calc(100% - 6px); /* 减去边框的大小 */
+              height: calc(100% - 6px); /* 减去边框的大小 */
+              border: 3px solid #fff;
+              /* Safari 5.1 - 6.0 */
+              background: -webkit-linear-gradient(#43baff, transparent, #3f41ff);
+              /* Opera 11.1 - 12.0 */
+              background: -o-linear-gradient(#43baff, transparent, #3f41ff);
+              /* Firefox 3.6 - 15 */
+              background: -moz-linear-gradient(#43baff, transparent, #3f41ff);
+              /* 标准的语法 */
+              background: linear-gradient(#43baff, transparent, #3f41ff);
+            }
+            .circle:first-child {
+              animation: circle-opacity 2s infinite;
+              animation-delay: .6s;
+            }
+
+            .circle:nth-child(2) {
+              animation: circle-opacity 2s infinite;
+              animation-delay: .3s;
+            }
+
+            .circle:nth-child(3) {
+              animation: circle-opacity 2s infinite;
+              /*animation-delay: .6s;*/
+            }
+
+
+            @keyframes circle-opacity {
+              from {
+                opacity: 1;
+                transform: scale(0);
+              }
+              to {
+                opacity: 0;
+                transform: scale(1);
+              }
+            }
+          }
+
+          .wave.ripple.danger {
+            color: red;
+            .circle {
+              border-color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.wave {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 28px;
+  color: #ff1f59;
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    width: calc(100% - 6px); /* 减去边框的大小 */
+    height: calc(100% - 6px); /* 减去边框的大小 */
+    border: 3px solid #fff;
+    /* Safari 5.1 - 6.0 */
+    background: -webkit-linear-gradient(red, transparent, red);
+    /* Opera 11.1 - 12.0 */
+    background: -o-linear-gradient(red, transparent, red);
+    /* Firefox 3.6 - 15 */
+    background: -moz-linear-gradient(red, transparent, red);
+    /* 标准的语法 */
+    background: linear-gradient(to red, transparent, red);
+  }
+  .circle:first-child {
+    animation: circle-opacity 2s infinite;
+    animation-delay: .6s;
+  }
+
+  .circle:nth-child(2) {
+    animation: circle-opacity 2s infinite;
+    animation-delay: .3s;
+  }
+
+  .circle:nth-child(3) {
+    animation: circle-opacity 2s infinite;
+    /*animation-delay: .6s;*/
+  }
+  .warning {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes circle-opacity {
+    from {
+      opacity: 1;
+      transform: scale(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+}
+
+.wave.ripple.danger {
+  color: #ff1f59;
+  .circle {
+    border-color: #ff1f59;
+  }
+}
+
+.safe{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #20c22b;
+}
+
+.earlyWarning{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff71f;
+}
+
+.offline{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #bfbfbf;
+}

@@ -1,0 +1,136 @@
+navColor = #202133
+mainFont = #2e59bd
+secondFont = #535f6b
+tableBorder = 1px solid rgba(164, 181, 199, 0.5)
+focusBorder = 1px solid #535f6b
+tableWidth = 66%
+
+.content
+  min-width: 1106px;
+  .content-title
+    height: 36px;
+    line-height: 26px;
+    margin-left: 1em;
+    font-size: 16px;
+    color: secondFont
+  .content-body
+    .top-wrapper
+      padding: 20px 20px 5px
+      background-color: #fff
+      margin-bottom: 1px
+      .title
+        height: 18px
+        line-height: 18px
+        padding-left: 10px
+        font-size: 18px
+        font-weight: bold
+        color: navColor
+        border-left: 4px solid mainFont
+      .search-bar
+        margin: 30px 15px
+        border-radius 4px
+        font-size: 14px
+        color: secondFont
+        select
+          width: 200px
+          height: 40px
+          border: 1px solid #a4b5c7
+          border-radius: 4px
+          -webkit-box-sizing: border-box
+          -moz-box-sizing: border-box
+          box-sizing: border-box
+          margin: 0 20px 0 5px
+          font-size: 14px
+          color: navColor
+          &:focus
+            border: 1px solid secondFont;
+        button
+          width: 60px
+          height: 40px
+          color: #fff
+          background-color: rgba(32, 33, 51, 0.7)
+          border-radius: 4px
+          margin-right: 10px
+    .table-wrapper
+      position: relative
+      background-color: #fff;
+      height: 660px
+      padding-top: 40px
+      .table-title
+        width: tableWidth
+        height: 50px
+        margin 0 auto
+        text-align: center
+        line-height: 50px
+        color: #fff;
+        background-color: rgba(32, 33, 51, 0.8);
+        font-size: 16px;
+        border-left 1px solid rgba(32, 33, 51, 0.8)
+      .table-container
+        position: relative
+        margin: 0 auto
+        width: tableWidth
+        height: 520px
+        overflow-y: hidden
+        table
+          width: 100%
+          margin: 0 auto
+          border-spacing: 0;
+          border-collapse: collapse;
+          text-align: left;
+          tbody
+            tr
+              font-size: 14px;
+              color: secondFont;
+              height: 40px;
+              td, th
+                border-left tableBorder
+                border-right: tableBorder;
+                border-bottom: tableBorder;
+                span {
+                  margin-left: 10px
+                }
+                &:last-of-type {
+                  width: 240px
+                  button {
+                    width: 60px
+                    height: 30px
+                    color: mainFont
+                    border tableBorder
+                    border-radius: 4px
+                    margin-right: 15px
+                  }
+                }
+                &.permissions-td {
+                  width: 60%
+                  font-size: 16px
+                  span {
+                    margin-left: 8%
+                  }
+                }
+              th, .second-model {
+                width: 20%
+                font-size: 20px
+                font-weight: bold
+              }
+              .second-model {
+                font-size 18px
+              }
+      @media (max-width: 1366px) {
+        .table-title, .table-container {
+          width: 78%
+        }
+      }
+      button {
+        display: block
+        margin: 20px auto
+        width: 80px
+        height: 40px
+        color: #fff
+        background-color: mainFont
+        border-radius 6px
+      }
+
+.cover {
+  height: 880px
+}

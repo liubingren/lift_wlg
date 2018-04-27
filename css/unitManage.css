@@ -1,0 +1,533 @@
+.app {
+  height: 1080px;
+  overflow: hidden;
+}
+.app .wrapper .cover {
+  margin-top: 0px;
+}
+.app .wrapper .pageNav {
+  overflow: hidden;
+  height: 55px;
+}
+.app .wrapper .pageNav .title {
+  float: left;
+  height: 55px;
+  line-height: 55px;
+}
+.app .wrapper .content {
+  height: 930px;
+  background: #fff;
+  width: 100%;
+  position: relative;
+  margin-top: 0px;
+  min-width: 1106px;
+}
+.app .wrapper .content .top {
+  padding-bottom: 25px;
+  border-bottom: 3px solid #f6f6f6;
+}
+.app .wrapper .content .top .title {
+  height: 20px;
+  padding: 20px 0px 30px 20px;
+}
+.app .wrapper .content .top .title div {
+  height: 100%;
+  line-height: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+  text-indent: 10px;
+  border-left: 4px solid #2e59bc;
+}
+.app .wrapper .content .top .top_body {
+  display: flex;
+  align-items: center;
+  padding-left: 33px;
+}
+.app .wrapper .content .top .top_body button {
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 7px;
+  background: rgba(32, 33, 51, 0.6);
+  font-size: 14px;
+  color: #ffffff;
+  margin-right: 1.25%;
+  display: none;
+}
+.app .wrapper .content .top .top_body button:hover {
+  background: rgba(32, 33, 51, 0.8);
+}
+.app .wrapper .content .top .top_body button#query {
+  display: inline-block;
+}
+.app .wrapper .content .top .top_body span {
+  margin-left: 10px;
+}
+.app .wrapper .content .top .top_body div {
+  height: 40px;
+  margin-right: 1.866%;
+  margin-left: 5px;
+  position: relative;
+}
+.app .wrapper .content .top .top_body div input {
+  width: 160px;
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid #a4b5c7;
+  text-indent: 10px;
+  color: #535f6b;
+  font-size: 14px;
+}
+.app .wrapper .content .top .top_body div .son_ul {
+  overflow: auto;
+  display: none;
+  width: 100%;
+  max-height: 320px;
+  position: absolute;
+  left: 0;
+  top: 42px;
+  background: #666;
+  z-index: 100;
+  color: #ffffff;
+}
+.app .wrapper .content .top .top_body div .son_ul li {
+  padding: 10px 0px 10px 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.app .wrapper .content .top .top_body div .son_ul li:hover {
+  background: #3a3949;
+}
+.app .wrapper .content .center {
+  margin-bottom: 90px;
+  height: 790px;
+  display: flex;
+  flex-flow: row;
+}
+.app .wrapper .content .center .leftContent {
+  height: 790px;
+  border-right: 3px solid #f6f6f6;
+  width: 248px!important;
+  position: absolute;
+}
+.app .wrapper .content .center .leftContent .backBtn {
+  height: 40px;
+  margin-top: 10px;
+  display: none;
+  overflow: hidden;
+}
+.app .wrapper .content .center .leftContent .backBtn button {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 7px;
+  background: rgba(32, 33, 51, 0.6);
+  font-size: 14px;
+  color: #ffffff;
+  float: left;
+}
+.app .wrapper .content .center .leftContent .backBtn button:hover {
+  background: rgba(32, 33, 51, 0.8);
+}
+.app .wrapper .content .center .leftContent .backBtn button:first-child {
+  margin-right: 10px;
+  margin-left: 30px;
+}
+.app .wrapper .content .center .leftContent #treeBox {
+  padding: 0;
+  margin: 10px 0 0 10px;
+  position: absolute;
+  overflow: hidden;
+  height: 780px;
+  width: 238px!important;
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li {
+  padding: 4px 0;
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li span {
+  font-size: 18px;
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li span.button {
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  width: 21px;
+  height: 21px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0 none;
+  cursor: pointer;
+  outline: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-image: url(img/metro.png);
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li span.button.switch {
+  width: 21px;
+  height: 21px;
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li span.noline_close {
+  background: url(../img/lifts_manage_sprite.png) -428px 3px;
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li span.noline_open {
+  background: url(../img/lifts_manage_sprite.png) -672px 6px;
+}
+.app .wrapper .content .center .leftContent #treeBox .ztree li span a {
+  text-decoration: none;
+  color: #000;
+}
+.app .wrapper .content .center .rightContent {
+  width: 100%;
+  position: absolute;
+  left: 251px;
+  top: 175px;
+  display: flex;
+  flex-flow: row;
+}
+.app .wrapper .content .center .rightContent .unitLogo {
+  width: 350px;
+  height: 270px;
+  margin: 160px 0px 0px 100px;
+  background: url("../img/unit.png") no-repeat left top;
+}
+.app .wrapper .content .center .rightContent .unitInfo {
+  margin: 15px 0px 0px 30px;
+  width: 375px;
+  height: 555px;
+  display: none;
+}
+.app .wrapper .content .center .rightContent .unitInfo div {
+  margin-bottom: 30px;
+  display: flex;
+  flex-flow: row;
+  align-items: flex-end;
+}
+.app .wrapper .content .center .rightContent .unitInfo div span {
+  display: inline-block;
+}
+.app .wrapper .content .center .rightContent .unitInfo div span.legend {
+  margin-left: 30px;
+  width: 65px;
+  margin-right: 25px;
+}
+.app .wrapper .content .center .rightContent .unitInfo div span.unName.legend {
+  width: 155px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24px;
+  color: #2e5abd;
+}
+.app .wrapper .content .center .rightContent .unitInfo div span.titleContent.info {
+  color: #2e5abd;
+}
+.app .wrapper .add-edit-pop {
+  display: none;
+  position: absolute;
+  width: 560px;
+  height: 665px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  box-shadow: 5px 5px 5px #aaa;
+  background-color: #fff;
+}
+.app .wrapper .add-edit-pop .pop-title {
+  position: absolute;
+  height: 42px;
+  width: 100%;
+  line-height: 42px;
+  font-size: 18px;
+  border-bottom: 1px solid #2e59bd;
+}
+.app .wrapper .add-edit-pop .pop-title i {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  width: 28px;
+  height: 22px;
+}
+.app .wrapper .add-edit-pop .pop-title i.add-lift {
+  background: url("../img/lifts_manage_sprite.png") -585px 0;
+}
+.app .wrapper .add-edit-pop .pop-title i.edit-lift {
+  background: url("../img/lifts_manage_sprite.png") -613px 0;
+}
+.app .wrapper .add-edit-pop .pop-title .pop-title-content {
+  padding-left: 50px;
+}
+.app .wrapper .add-edit-pop .pop-title .close-btn {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  background: url(../img/user_pop_sprite.png) -132px 1px;
+  border-radius: 50%;
+}
+.app .wrapper .add-edit-pop .pop-body {
+  width: 90%;
+  margin: 73px auto 0px 100px;
+  font-size: 15px;
+}
+.app .wrapper .add-edit-pop .pop-body div {
+  width: 100%;
+}
+.app .wrapper .add-edit-pop .pop-body div div {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.app .wrapper .add-edit-pop .pop-body div div span {
+  width: 110px;
+  margin-right: 10px;
+}
+.app .wrapper .add-edit-pop .pop-body div div span.required {
+  color: #ff0000;
+  width: 5px;
+  margin-right: 5px;
+}
+.app .wrapper .add-edit-pop .pop-body div div input {
+  width: 230px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 6px;
+  border: 1px solid #a4b5c7;
+  text-indent: 10px;
+  color: #535f6b;
+  margin-right: 1.866%;
+}
+.app .wrapper .add-edit-pop .pop-body div div .selectText {
+  width: 230px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #a4b5c7;
+  text-indent: 10px;
+  color: #535f6b;
+  margin-right: 1.866%;
+  font-size: 14px;
+}
+.app .wrapper .add-edit-pop .pop-body div div .selectText .select_box {
+  position: relative;
+  text-indent: 10px;
+  width: 230px;
+}
+.app .wrapper .add-edit-pop .pop-body div div .selectText .select_box span {
+  cursor: pointer;
+  display: block;
+  line-height: 40px;
+  width: 230px;
+  position: relative;
+  margin-right: 0px;
+  background: url("../img/downArrow.png") no-repeat 90% center;
+}
+.app .wrapper .add-edit-pop .pop-body div div .selectText .select_box .son_ul {
+  display: none;
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  top: 41px;
+  background: #666;
+  z-index: 100;
+  color: #ffffff;
+}
+.app .wrapper .add-edit-pop .pop-body div div .selectText .select_box .son_ul li {
+  padding: 10px 0px 10px 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.app .wrapper .add-edit-pop .pop-body div div .selectText .select_box .son_ul li:hover {
+  background: #3a3949;
+}
+.app .wrapper .add-edit-pop .pop-body div div .radio-wrap-group {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+.app .wrapper .add-edit-pop .pop-body div div .radio-wrap-group .radio-wrap-item {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+.app .wrapper .add-edit-pop .pop-body div div .radio-wrap-group .radio-wrap-item span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/radio_unclick.png) no-repeat left top;
+  margin-right: 5px;
+}
+.app .wrapper .add-edit-pop .pop-body div div .radio-wrap-group .radio-wrap-item span.click {
+  background: url(../img/radio_click.png) no-repeat left top;
+}
+.app .wrapper .add-edit-pop .pop-body div div .radio-wrap-group .radio-wrap-item i {
+  font-style: normal;
+  margin-right: 40px;
+}
+.app .wrapper .add-edit-pop .confirm-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+}
+.app .wrapper .add-edit-pop .confirm-btn button {
+  width: 80px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.app .wrapper .add-edit-pop .confirm-btn button.submit-user-info {
+  color: #fff;
+  background-color: #2e59bd;
+  margin-left: 110px;
+}
+.app .wrapper .add-edit-pop .confirm-btn button.close-btn {
+  color: #535f6b;
+  background-color: rgba(83, 95, 107, 0.2);
+}
+.app .wrapper #umimport-pop {
+  display: none;
+  position: absolute;
+  width: 382px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  box-shadow: 5px 5px 5px #aaa;
+  background-color: #fff;
+}
+.app .wrapper #umimport-pop .pop-title {
+  position: absolute;
+  height: 42px;
+  width: 100%;
+  line-height: 42px;
+  font-size: 18px;
+  border-bottom: 1px solid #2e59bd;
+}
+.app .wrapper #umimport-pop .pop-title .titleText {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.app .wrapper #umimport-pop .pop-title .titleText i {
+  font-style: normal;
+  background: url("../img/import.png") no-repeat left top;
+  display: inline-block;
+  width: 20px;
+  height: 21px;
+  margin-left: 18px;
+}
+.app .wrapper #umimport-pop .pop-title .titleText span {
+  margin-left: 3px;
+}
+.app .wrapper #umimport-pop .pop-title .close-btn {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  background: url(../img/user_pop_sprite.png) -132px 1px;
+  border-radius: 50%;
+}
+.app .wrapper #umimport-pop .import-body {
+  padding-left: 41px;
+  margin-top: 44px;
+  color: #7d8792;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(1) {
+  margin-bottom: 20px;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(1) #getImportTemplate {
+  color: #2e59bd;
+  display: inline-block;
+  border-bottom: 1px solid #2e59bd;
+  padding: 10px 0;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(2) {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(2) #fileName {
+  width: 212px;
+  height: 38px;
+  border: 1px solid #7d8792;
+  border-radius: 10px;
+  text-indent: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(2) .upload-btn {
+  width: 84px;
+  height: 38px;
+  line-height: 38px;
+  border: 1px solid #7d8792;
+  text-align: center;
+  border-radius: 10px;
+  color: #7d8792;
+  font-size: 16px;
+  position: relative;
+  color: #2e59bd;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(2) .upload-btn span {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.app .wrapper #umimport-pop .import-body div:nth-child(2) .upload-btn #upload-btn {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.app .wrapper #umimport-pop .confirm-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0px;
+}
+.app .wrapper #umimport-pop .confirm-btn button {
+  width: 80px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.app .wrapper #umimport-pop .confirm-btn button.submit-user-info {
+  color: #fff;
+  background-color: #2e59bd;
+  margin-left: 40px;
+}
+.app .wrapper #umimport-pop .confirm-btn button.close-btn {
+  color: #535f6b;
+  background-color: rgba(83, 95, 107, 0.2);
+}
+.disabledCover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 99;
+}

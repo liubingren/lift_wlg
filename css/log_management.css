@@ -1,0 +1,127 @@
+.content {
+  background-color: #fff;
+  height: 89%;
+  overflow: auto;
+  min-width: 1106px;
+}
+.content-title {
+  display: flex;
+  background-color: #eceffc;
+  justify-content: space-between;
+  padding: 10px 0 20px 15px;
+  color: #535f6b;
+}
+.content-title span:first-child {
+  font-weight: bold;
+}
+.form-title {
+  background-color: #fff;
+  padding: 15px 0 15px 20px;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 2px solid #f6f6f6;
+  border-radius: 5px;
+}
+.form-title i {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 5px;
+  background: url("../img/lifts_manage_sprite.png") 109px top;
+}
+.form-title div:last-child {
+  margin-top: 30px;
+  margin-left: 40px;
+}
+.form-title div:last-child label {
+  color: #535f6b;
+  font-size: 16px;
+}
+.form-title div:last-child input {
+  width: 200px;
+  height: 40px;
+  color: #535f6b;
+  font-size: 15px;
+  text-indent: 10px;
+  border: 1px solid #a4b5c7;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+.form-title div:last-child input:focus {
+  border: 1px solid #535f6b;
+}
+.form-title div:last-child button {
+  font-size: 14px;
+  background-color: rgba(32, 33, 51, 0.7);
+  color: #fff;
+  border-radius: 4px;
+  padding: 9px 15px;
+  margin-left: 10px;
+  border: 1px solid #535f6b;
+}
+.form-title div:last-child button:hover {
+  border-color: #202133;
+}
+.form-content {
+  padding: 20px 25px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+.form-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 30px;
+}
+.form-content table tbody tr {
+  font-size: 13px;
+  color: #535f6b;
+  text-align: center;
+}
+.form-content table tr {
+  display: flex;
+}
+.form-content table tr th {
+  color: #FFFFFF;
+  font-size: 16px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  background-color: rgba(32, 33, 51, 0.8);
+  flex: 2;
+}
+.form-content table tr th:first-child {
+  flex: 1;
+}
+.form-content table tr th:nth-child(2) {
+  flex: 1;
+}
+.form-content table tr th:nth-child(6) {
+  flex: 4;
+}
+.form-content table tr td {
+  height: 38px;
+  line-height: 38px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 2;
+  border: solid rgba(164, 181, 199, 0.5);
+  border-width: 0px 1px 1px 0px;
+}
+.form-content table tr td:nth-child(1) {
+  flex: 1;
+  border-width: 0px 1px 1px 1px;
+}
+.form-content table tr td:nth-child(2) {
+  flex: 1;
+}
+.form-content table tr td:nth-child(6) {
+  flex: 4;
+}
+.form-content .page-bar {
+  bottom: 40px;
+}

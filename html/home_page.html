@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/home_page.css">
+</head>
+<body>
+
+<div id="home-page" class="app">
+    <nav id="nav"></nav>
+    <div class="wrapper" id="wrapper">
+        <header id="header"></header>
+
+        <!--遮罩层-->
+        <!--一定要放在 .content 前面-->
+        <div id="cover"></div>
+
+        <div class="content" id="content">
+            <div class="personal-unit-info">
+                <div class="personal-card">
+                    <div class="user-name" v-cloak>{{name}}</div>
+                    <div class="user-avatar">
+                        <img src="../img/user_avatar.png" alt="">
+                    </div>
+                    <div class="user-role">
+                        <span>角色</span><span v-cloak>{{roleName}}</span>
+                    </div>
+                    <div class="user-unit">
+                        <span>公司</span><span v-cloak>{{companyName}}</span>
+                    </div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-card-title">
+                        <i></i><span>基本信息</span>
+                    </div>
+                    <div>
+                        <i class="unit-name"></i><span>公司名称</span><span v-cloak>{{companyName}}</span>
+                    </div>
+                    <div>
+                        <i class="unit-address"></i><span>公司地址</span><span v-cloak>{{companyAddr}}</span>
+                    </div>
+                    <div>
+                        <i class="unit-phone"></i><span>联系电话</span><span v-cloak>{{phoneNum}}</span>
+                    </div>
+                    <div>
+                        <i class="unit-email"></i><span>联系邮箱</span><span v-cloak>{{emailAddr}}</span>
+                    </div>
+                    <div>
+                        <i class="contact-unit"></i><span>接入单位</span><span v-cloak>{{contactUnits}}个</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lifts-status" id="lifts-status">
+                <div class="status-list">
+                    <div class="lifts-total">
+                        <div class="status-title">
+                            <span class="vertical-bar"></span>电梯总量
+                        </div>
+                        <span v-cloak class="status-counts">{{totalLifts}}</span>
+                        <span>（台）</span>
+                    </div>
+                    <div class="normal-lifts">
+                        <div class="status-title">
+                            <span class="vertical-bar"></span>正常电梯
+                        </div>
+                        <span v-cloak class="status-counts">{{normalLists}}</span>
+                        <span>（台）</span>
+                    </div>
+                    <div class="early-warning-lifts">
+                        <div class="status-title">
+                            <span class="vertical-bar"></span>预警电梯
+                        </div>
+                        <span v-cloak class="status-counts">{{earlyWarningLifts}}</span>
+                        <span>（台）</span>
+                    </div>
+                    <div class="warning-lifts">
+                        <div class="status-title">
+                            <span class="vertical-bar"></span>报警电梯
+                        </div>
+                        <span v-cloak class="status-counts">{{warningLifts}}</span>
+                        <span>（台）</span>
+                    </div>
+                    <div class="offline-lifts">
+                        <div class="status-title">
+                            <span class="vertical-bar"></span>离线电梯
+                        </div>
+                        <span v-cloak class="status-counts">{{offlineLifts}}</span>
+                        <span>（台）</span>
+                    </div>
+                </div>
+                <div class="status-chart">
+                    <div class="chart-title">
+                        <span></span><span>设备统计</span>
+                    </div>
+                    <div class="total-counts">
+                        <span v-cloak>{{totalLifts}}</span><span>台</span><br>
+                        <span>电梯总量</span>
+                    </div>
+                    <div class="status-doughnut" id="status-doughnut">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--个人设置弹窗-->
+        <!--每个弹窗顶部都要有 .close-pop -->
+        <div class="user-info-pop close-pop show-pop" id="user-info-pop">
+            <div class="pop-title">
+                <i></i><span class="pop-title-content">个人设置</span>
+                <div class="select-tab">
+                    <span id="user-info-tab" class="active" onclick="togglePopBody(this)">个人信息</span>
+                    <span id="user-pwd-tab" onclick="togglePopBody(this)">密码修改</span>
+                </div>
+                <div class="close-btn" onclick="closeBtn(this,'user-info-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <div class="pop-user-avatar">
+                    <div class="avatar-img"></div>
+                    <div class="name" id="user-name"></div>
+                    <div class="role-name" id="role-name"></div>
+                </div>
+                <div id="pop-user-info" class="pop-user-info active">
+                    <div>
+                        <span>姓名</span>
+                        <input type="text" placeholder="请输入姓名" id="pop-full-name"
+                               onblur="notEmpty(this)">
+                        <span class="user-info-error not-empty">*此处不能为空</span>
+                    </div>
+                    <div>
+                        <span>性别</span>
+                        <select id="pop-gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>手机</span>
+                        <input type="text" placeholder="请输入手机号码" id="pop-phone"
+                               onblur="checkPhone(this,'user-info-error')">
+                        <span class="user-info-error" id="user-info-error">*请输入正确的手机号码</span>
+                    </div>
+                    <div>
+                        <span>邮箱</span>
+                        <input type="text" placeholder="请输入邮箱地址" id="pop-email"
+                               onblur="checkEmail(this,'email-error')">
+                        <span class="user-info-error" id="email-error">*请输入正确的邮箱地址</span>
+                    </div>
+                </div>
+                <div id="pop-user-pwd" class="pop-user-pwd">
+                    <div>
+                        <span>旧&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入旧密码" id="old-pwd">
+                    </div>
+                    <div>
+                        <span>新&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入新密码" id="new-pwd">
+                    </div>
+                    <div>
+                        <span>确认密码 </span>
+                        <input type="password" placeholder="请再次输入新密码" id="confirm-new-password"
+                               onblur="confirmPwd(this)">
+                        <span class="user-info-error" id="new-pwd-error">*输入密码与新密码不一致</span>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-btn">
+                <button class="submit-user-info" id="submit-user-info" data-btn="information"
+                        onclick="distinguishSubmit(this)"></button>
+                <button class="close-btn" onclick="closeBtn(this,'user-info-pop')"></button>
+            </div>
+        </div>
+
+        <!--二级弹窗-->
+        <!--除了closeBtn()的参数，不要更改二级弹窗的HTML-->
+        <!--每个页面只放一个，具体内容可用secondPop()传入-->
+        <div class="success-pop close-pop show-second" id="result-pop">
+            <div class="result-img" id="result-pop-bg"></div>
+            <div class="success-content">
+                <span id="operation-result"></span>
+            </div>
+            <button class="second-close-btn" onclick="closeBtn(this)"></button>
+        </div>
+
+        <!--警报弹窗-->
+        <div class="close-pop show-pop delete-pop alarm-pop" id="alarm-pop">
+            <div class="pop-title">
+                <div>故障</div>
+                <div class="close-btn" onclick="closeBtn(this,'alarm-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <table>
+                    <tr>
+                        <td>设备注册代码</td>
+                        <td id="alarm-pop-register-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备安装地址</td>
+                        <td id="alarm-pop-install-addr"></td>
+                    </tr>
+                    <tr>
+                        <td>设备内部编号</td>
+                        <td id="alarm-pop-inside-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备当前楼层</td>
+                        <td id="alarm-pop-current-floor"></td>
+                    </tr>
+                    <tr>
+                        <td>电梯是否有人</td>
+                        <td id="alarm-pop-anybody"></td>
+                    </tr>
+                    <tr>
+                        <td>关门是否到位</td>
+                        <td id="alarm-pop-whether-close"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" id="confirm-alarm-btn"
+                        onclick="closeBtn(this,'alarm-pop')
+                                 confirmAlarm(this)">
+                    报警实时运行状态确认
+                </button>
+            </div>
+        </div>
+
+        <!--加载中动画-->
+        <div id="loading" class="loading">
+            <img src="../img/loading.png" alt="">
+            <p>加载中</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../dist/js/general.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.common.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script src="../js/home_page.js"></script>
+</body>
+</html>

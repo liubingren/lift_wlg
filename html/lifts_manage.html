@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>电梯管理</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/jquery.perfect-scrollbar/0.8.1/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/lifts_manage.css">
+</head>
+<body>
+<div id="lifts-manage" class="app"
+     :class="{'detail-page':whichContent==='liftDetail'}">
+    <nav id="nav"></nav>
+    <div class="wrapper" id="wrapper">
+        <header id="header"></header>
+        <!--遮罩层-->
+        <!--一定要放在 .content 前面-->
+        <div id="cover"></div>
+
+        <div class="content" id="content">
+            <!--列表页-->
+            <div class="lift-list-content" v-if="whichContent==='liftsList'">
+                <div class="content-title">电梯管理</div>
+                <div class="area-tree">
+                    <div class="treeBox" id="treeBox">
+                        <ul class="ztree" id="treeDom"></ul>
+                    </div>
+                </div>
+                <div class="lifts-list" id="lifts-list">
+                    <div class="search-bar">
+                        <div class="lifts-list-title" v-cloak>
+                            <i></i>{{parentAreaName}}电梯列表
+                        </div>
+                        <div class="search-btn-wrapper">
+                            <label v-cloak>{{searchAreaName}}</label>
+                            <input type="text" placeholder="请输入地名"
+                                   v-model="inputAreaName">
+                            <button :class="{usable:inputAreaName}" @click="searchLiftsList()">查询</button>
+                            <button :class="{usable:inputAreaName}" @click="inputAreaName=''">重置</button>
+                        </div>
+                    </div>
+                    <div class="list-body">
+                        <div class="button-group" v-if="!areaLevelBool">
+                            <div @click="openAddLift()">新增
+                            </div>
+                            <div @click="openEditLift()">修改</div>
+                            <div @click="openDelete()">删除</div>
+                        </div>
+                        <ul>
+                            <li class="area-unit"
+                                v-for="item in liftsArr" :key="item.lid"
+                                :class="{shrink:isShrink,'community-unit-wrapper':!areaLevelBool}">
+                                <!--区域单位-->
+                                <div class="area-unit-content"
+                                     :data-lid="item.lid" @click="clickInto(item.level,item.lid,item.lname)"
+                                     v-if="areaLevelBool">
+                                    <div class="area-name" v-cloak>{{item.lname}}</div>
+                                    <div class="lifts-count" v-cloak>{{item.counts}}</div>
+                                    <div class="lifts-unit">电梯数量（台）</div>
+                                </div>
+                                <!--电梯单位-->
+                                <div class="area-unit-content community-unit"
+                                     v-else :class="{'off-line':!item.online_status,'check-fix':item.service_mode===2}">
+                                    <div>
+                                        <div class="lift-code">
+                                            <span title="设备内部编号">设备内部编号</span>
+                                            <div class="overflow-ellipsis" title="item.unit_id" v-cloak>
+                                                {{item.unit_id}}
+                                            </div>
+                                        </div>
+                                        <div class="close-situation"
+                                             :class="{'close-un-normal':!item.door_status}">
+                                            <span v-if="item.door_status">关门到位</span>
+                                            <span class="overflow-ellipsis" title="关门不到位" v-else>关门不到位</span>
+                                        </div>
+                                        <div v-if="item.service_mode===0" class="lift-mode">停止服务</div>
+                                        <div v-else-if="item.service_mode===1" class="lift-mode">正常运行</div>
+                                        <div v-else-if="item.service_mode===2" class="lift-mode">检修</div>
+                                        <div v-else-if="item.service_mode===3" class="lift-mode">消防返回</div>
+                                        <div v-else-if="item.service_mode===4"
+                                             class="lift-mode overflow-ellipsis" title="消防员运行">消防员运行
+                                        </div>
+                                        <div v-else-if="item.service_mode===5"
+                                             class="lift-mode overflow-ellipsis" title="应急电源运行">应急电源运行
+                                        </div>
+                                        <div v-else-if="item.service_mode===6" class="lift-mode">地震模式</div>
+                                        <div v-else-if="item.service_mode===7" class="lift-mode">未知</div>
+                                        <div v-else-if="item.service_mode===8" class="lift-mode">运输</div>
+                                    </div>
+                                    <div>
+                                        <div class="lift-floor">
+                                            <span>当前楼层</span>
+                                            <div class="floor-counts" v-cloak>{{item.car_position}}</div>
+                                        </div>
+                                        <div v-if="item.car_direction===1" class="lift-direction">
+                                            <span title="设备运行方向">设备运行方向</span>
+                                        </div>
+                                        <div v-else class="lift-direction-down">
+                                            <span title="设备运行方向">设备运行方向</span>
+                                        </div>
+
+                                        <div v-if="item.online_status" class="lift-line-situation">在线</div>
+                                        <div v-else class="item.lift-line-situation">离线</div>
+                                    </div>
+                                    <button :id="item.id" @click="intoDetail(item.id)">
+                                        点击查看
+                                    </button>
+                                    <div class="lift-radio-wrapper">
+                                        <input type="radio" name="liftItem" id="item.id">
+                                        <label for="item.id" class="lift-label"
+                                               @click="selectLift(item.id,$event)">
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--翻页-->
+                    <ul class="page-bar" id="page-bar">
+                        <li class="first-page" id="first-page">首页</li>
+                        <li class="pre-page" id="pre-page">上一页</li>
+                        <li class="current-page">
+                            <span id="current-page">1</span>/<span id="total-page"></span>
+                        </li>
+                        <li class="next-page" id="next-page">下一页</li>
+                        <li class="last-page" id="last-page">尾页</li>
+                        <li class="total-page" id="total-data"></li>
+                        <li class="jump-into">
+                            跳转到 <input type="text" id="input-page"> 页
+                            <button id="jump-into">GO</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--详情页-->
+            <div class="lift-detail-content" v-else-if="whichContent==='liftDetail'">
+                <div class="content-title">
+                    <span>电梯详情</span>
+                    <button @click="goBack()">返回</button>
+                </div>
+                <div class="lift-running-video">
+                    <div class="running-video">
+                        <div class="title">电梯实时运行视频</div>
+                        <div class="lift-register-code">设备注册代码 <span v-cloak>{{liftDetail.id_nr}}</span></div>
+                        <div class="lift-inside-code">设备内部编号 <span v-cloak>{{liftDetail.unit_id}}</span></div>
+                        <div class="video-wrapper">
+                            <video src=""></video>
+                            <div class="btn-group">
+                                <button>打开实时视频</button>
+                                <button>打开视频对话</button>
+                                <button>接受视频对话</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="running-info">
+                        <div class="title">实时运行状态信息</div>
+                        <div class="data-generate-time">数据生成时间：<span v-cloak>{{liftDetail.date_dev}}</span></div>
+                        <div class="service-mode">
+                            当前服务模式：
+                            <select>
+                                <option value="0" :selected="liftDetail.service_mode===0">停止服务</option>
+                                <option value="2" :selected="liftDetail.service_mode===2">正常运行</option>
+                                <option value="3" :selected="liftDetail.service_mode===3">消防返回</option>
+                                <option value="4" :selected="liftDetail.service_mode===4">消防员运行</option>
+                                <option value="5" :selected="liftDetail.service_mode===5">应急电源运行</option>
+                                <option value="6" :selected="liftDetail.service_mode===6">地震模式</option>
+                                <option value="7" :selected="liftDetail.service_mode===7">未知</option>
+                                <option value="8" :selected="liftDetail.service_mode===8">运输</option>
+                            </select>
+                        </div>
+
+                        <div class="running-status" v-if="liftDetail.car_status===1">轿厢运行状态：<span>1（运行）</span></div>
+                        <div class="running-status" v-if="liftDetail.car_status===0">轿厢运行状态：<span>0（停止）</span></div>
+
+                        <div class="running-direction" v-if="liftDetail.car_direction===2">轿厢运行方向:<span>2（下行）</span>
+                        </div>
+                        <div class="running-direction" v-else-if="liftDetail.car_direction===0">
+                            轿厢运行方向:<span>0（无方向）</span></div>
+                        <div class="running-direction" v-else-if="liftDetail.car_direction===1">
+                            轿厢运行方向:<span>1（上行）</span>
+                        </div>
+
+                        <div class="in-unlocking-area" v-if="liftDetail.door_zone">开锁区域：<span>True（轿厢在开锁区域）</span></div>
+                        <div class="in-unlocking-area" v-else>开锁区域：<span>false（轿厢不在开锁区域）</span></div>
+
+                        <div class="current-floor">电梯当前楼层：<span v-cloak>{{liftDetail.car_position}}</span></div>
+
+                        <div class="close-normally" v-if="liftDetail.door_status">关门到位：<span>true（关门到位）</span></div>
+                        <div class="close-normally" v-else>关门到位：<span>false（无关门到位信号）</span></div>
+
+                        <div class="someone-inside" v-if="liftDetail.passenger_status">轿内是否有人：<span>True（有人）</span>
+                        </div>
+                        <div class="someone-inside" v-else>轿内是否有人：<span>false（无人）</span></div>
+                    </div>
+                </div>
+                <div class="lift-info-detail">
+                    <div class="info-tab" id="info-tab-ids">
+                        <div class="basic-info" @click.self="showInfoContent">
+                            <i class="basic-icon"></i>电梯基础信息 <i class="check-detail"></i>
+                        </div>
+                        <div class="statistics-info" @click.self="showInfoContent">
+                            <i class="statistics-icon"></i>统计信息 <i class="check-detail"></i>
+                        </div>
+                        <div class="electric-info" @click.self="showInfoContent">
+                            <i class="electric-icon"></i>用电信息 <i class="check-detail"></i>
+                        </div>
+                        <div class="computer-room" @click.self="showInfoContent">
+                            <i class="computer-icon"></i>机房信息 <i class="check-detail"></i>
+                        </div>
+                    </div>
+                    <div class="info-content" id="info-content-ids">
+                        <div class="basic-info-content">
+                            <div class="title">电梯基础信息详情</div>
+                            <table>
+                                <tr>
+                                    <td class="td-name">设备出厂编号</td>
+                                    <td v-cloak>{{liftDetail.product_id}}</td>
+                                    <td class="td-name">
+                                        <div>设备改造日期</div>
+                                        <div>(YYYY.MM.DD)</div>
+                                    </td>
+                                    <td v-cloak>{{liftDetail.mod_date}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备注册代码</td>
+                                    <td v-cloak>{{liftDetail.id_nr }}</td>
+                                    <td class="td-name">设备安装单位</td>
+                                    <td v-cloak>{{liftDetail.inst_comp}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备品种</td>
+                                    <td v-cloak>{{liftDetail.inst_type }}</td>
+                                    <td class="td-name">
+                                        <div>设备安装日期</div>
+                                        <div>(YYYY.MM.DD)</div>
+                                    </td>
+                                    <td v-cloak>{{liftDetail.inst_date}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备型号</td>
+                                    <td v-cloak>{{liftDetail.product_name }}</td>
+                                    <td class="td-name">维护保养单位名称</td>
+                                    <td v-cloak>{{liftDetail.maint_comp}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备安装地址</td>
+                                    <td v-cloak>{{liftDetail.inst_addr}}</td>
+                                    <td class="td-name">维护保养人员</td>
+                                    <td v-cloak>{{liftDetail.maint_staffs}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">经度</td>
+                                    <td v-cloak>{{liftDetail.longitude}}</td>
+                                    <td class="td-name">应急救援电话</td>
+                                    <td v-cloak>{{liftDetail.emergency_tel}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">纬度</td>
+                                    <td v-cloak>{{liftDetail.latitude}}</td>
+                                    <td class="td-name">使用单位名称</td>
+                                    <td v-cloak>{{liftDetail.user}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备内部编号</td>
+                                    <td v-cloak>{{liftDetail.unit_id}}</td>
+                                    <td class="td-name">层站数</td>
+                                    <td v-cloak>{{liftDetail.lift_floor_nr}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备制造商</td>
+                                    <td v-cloak>{{liftDetail.vendor}}</td>
+                                    <td class="td-name">额定速度（M/S）</td>
+                                    <td v-cloak>{{liftDetail.lift_rated_speed}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">进口设备代理商</td>
+                                    <td v-cloak>{{liftDetail.import_dealer}}</td>
+                                    <td class="td-name">额定载重量（KG）</td>
+                                    <td v-cloak>{{liftDetail.lift_rated_load}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">
+                                        <div>设备出厂日期</div>
+                                        <div>(YYYY.MM.DD)</div>
+                                    </td>
+                                    <td v-cloak>{{liftDetail.production_date}}</td>
+                                    <td class="td-name">显示楼层</td>
+                                    <td v-cloak>{{liftDetail.display_floor}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-name">设备改造单位</td>
+                                    <td v-cloak>{{liftDetail.mod_company}}</td>
+                                    <td class="td-name">
+                                        <div>下次年检日期</div>
+                                        <div>(YYYY.MM.DD)</div>
+                                    </td>
+                                    <td v-cloak>{{liftDetail.next_annual_inspection_date}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="statistics-info-content">
+                            <div class="title">统计信息详情</div>
+                            <div class="window-wrapper">
+                                <div class="total-running-times">
+                                    <div>设备累计运行时间<i></i></div>
+                                    <div v-cloak>{{liftDetail.total_running_time}} <i></i><span>小时</span></div>
+                                </div>
+                                <div class="total-running-frequency">
+                                    <div>设备累计运行次数 <i></i></div>
+                                    <div v-cloak>{{liftDetail.present_counter_value}} <i></i><span>次</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="electric-info-content">
+                            <div class="title">用电信息详情</div>
+                            <div class="info-wrapper">
+                                <div class="kilowatt-hour">
+                                    <div>电度（kWh）</div>
+                                    <i class="bg-img"></i>
+                                    <i></i>
+                                    <div><span v-cloak>{{liftDetail.w}}</span></div>
+                                </div>
+                                <div class="voltage">
+                                    <div>电压（V）</div>
+                                    <i class="bg-img"></i>
+                                    <i></i>
+                                    <div>
+                                        <span v-cloak>A: {{liftDetail.voltage_a}}</span>
+                                        <span v-cloak>B: {{liftDetail.voltage_b}}</span>
+                                        <br>
+                                        <span v-cloak>C: {{liftDetail.voltage_c}}</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="electricity">
+                                    <div>电流（A）</div>
+                                    <i class="bg-img"></i>
+                                    <i></i>
+                                    <div>
+                                        <span v-cloak>A: {{liftDetail.electric_current_a}}</span>
+                                        <span v-cloak>B: {{liftDetail.electric_current_b}}</span>
+                                        <br>
+                                        <span v-cloak>C: {{liftDetail.electric_current_c}}</span>
+                                    </div>
+                                </div>
+                                <div class="temperature">
+                                    <div>温度（℃）</div>
+                                    <i class="bg-img"></i>
+                                    <i></i>
+                                    <div>
+                                        <span v-cloak>A: {{liftDetail.temperature_a}}</span>
+                                        <span v-cloak>B: {{liftDetail.temperature_b}}</span>
+                                        <br>
+                                        <span v-cloak>C: {{liftDetail.temperature_c}}</span>
+                                        <span v-cloak>D: {{liftDetail.temperature_d}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="computer-room-content">
+                            <div class="title">机房信息详情</div>
+                            <div class="temperature">
+                                <div>机房温度（℃）</div>
+                                <i></i>
+                                <div v-cloak>{{liftDetail.temperature_room}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lift-log-table">
+                    <div class="breakdown">
+                        <div>
+                            <span>故障日志</span>
+                            <span class="check-breakdown check-more"
+                                  @click="openLogsDetail">查看更多</span></div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>设备安装地址</th>
+                                <th>故障报警时间</th>
+                                <th>故障报警类型</th>
+                                <th>处理状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="log of breakdownLog">
+                                <td v-cloak>{{log.lname}}</td>
+                                <td v-cloak>{{log.fault_time}}</td>
+                                <td v-cloak>{{log.fault_type+'('+log.fault_value+')'}}</td>
+
+                                <td v-if="log.order_status===1">未处理</td>
+                                <td v-else-if="log.order_status===2">处理中</td>
+                                <td v-else-if="log.order_status===3">已处理</td>
+                                <td v-else>无数据</td>
+
+                                <td><a class="check-order-btn"
+                                       :href="breakdownWorkOrder(log.work_order)">查看工单</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="event">
+                        <div>
+                            <span>事件日志</span>
+                            <span class="check-events check-more"
+                                  @click="openLogsDetail">查看更多</span></div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>设备安装地址</th>
+                                <th>事件时间</th>
+                                <th>事件类型</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="log of eventLogs">
+                                <td v-cloak>{{log.lname}}</td>
+                                <td v-cloak>{{log.event_time}}</td>
+                                <td v-cloak>{{log.event_type+'('+log.event_value+')'}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="alarm-btn-status">
+                        <div>
+                            <span>报警按钮状态</span>
+                            <span class="check-alarm-btn check-more"
+                                  @click="openLogsDetail">查看更多</span></div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>设备安装地址</th>
+                                <th>报警时间</th>
+                                <th>动作状态</th>
+                                <th>处理状态</th>
+                                <th>救援时间</th>
+                                <th>完成救援时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="log of alarmBtnStatusLogs">
+                                <td v-cloak>{{log.lname}}</td>
+                                <td v-cloak>{{log.alarm_time}}</td>
+                                <td v-cloak>{{log.action_status}}</td>
+
+                                <td v-if="log.order_status===1">未处理</td>
+                                <td v-else-if="log.order_status===2">处理中</td>
+                                <td v-else-if="log.order_status===3">已处理</td>
+
+                                <td v-cloak>{{log.rescue_time}}</td>
+                                <td v-cloak>{{log.was_rescue_time}}</td>
+                                <td>
+                                    <a class="check-order-btn"
+                                       :href="alarmWorkOrder(log.work_order)">查看工单</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--表格页-->
+            <div class="log-table-detail" v-else-if="whichContent==='tablePage'">
+                <div class="content-title">
+                    <span v-cloak>{{logTitle}}查看更多</span>
+                    <button @click="backToDetail()">返回</button>
+                </div>
+                <div class="breakdown" v-if="whichTable==='breakdown'">
+                    <div>故障日志</div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>设备安装地址</th>
+                            <th>报警时间</th>
+                            <th>报警类型</th>
+                            <th>处理状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="log of breakdownLog">
+                            <td v-cloak>{{log.lname}}</td>
+                            <td v-cloak>{{log.fault_time}}</td>
+                            <td v-cloak>{{log.fault_type+'('+log.fault_value+')'}}</td>
+
+                            <td v-if="log.order_status===1">未处理</td>
+                            <td v-else-if="log.order_status===2">处理中</td>
+                            <td v-else-if="log.order_status===3">已处理</td>
+                            <td v-else>无数据</td>
+
+                            <td><a href="systemError_workorderManage.html">查看工单</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="event" v-else-if="whichTable==='events'">
+                    <div>事件日志</div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>设备安装地址</th>
+                            <th>事件时间</th>
+                            <th>事件类型</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="log of eventLogs">
+                            <td v-cloak>{{log.lname}}</td>
+                            <td v-cloak>{{log.event_time}}</td>
+                            <td v-cloak>{{log.event_type+'('+log.event_value+')'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alarm-btn-status" v-else-if="whichTable==='alarm'">
+                    <div>报警按钮状态</div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>设备安装地址</th>
+                            <th>报警时间</th>
+                            <th>动作状态</th>
+                            <th>处理状态</th>
+                            <th>救援时间</th>
+                            <th>完成救援时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="log of alarmBtnStatusLogs">
+                            <td v-cloak>{{log.lname}}</td>
+                            <td v-cloak>{{log.alarm_time}}</td>
+                            <td v-cloak>{{log.action_status}}</td>
+
+                            <td v-if="log.order_status===1">未处理</td>
+                            <td v-else-if="log.order_status===2">处理中</td>
+                            <td v-else-if="log.order_status===3">已处理</td>
+
+                            <td v-cloak>{{log.rescue_time}}</td>
+                            <td v-cloak>{{log.was_rescue_time}}</td>
+                            <td><a href="examine_workorderalarm.html">查看工单</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--个人设置弹窗-->
+        <!--每个弹窗顶部都要有 .close-pop -->
+        <div class="user-info-pop close-pop show-pop" id="user-info-pop">
+            <div class="pop-title">
+                <i></i><span class="pop-title-content">个人设置</span>
+                <div class="select-tab">
+                    <span id="user-info-tab" class="active" onclick="togglePopBody(this)">个人信息</span>
+                    <span id="user-pwd-tab" onclick="togglePopBody(this)">密码修改</span>
+                </div>
+                <div class="close-btn" onclick="closeBtn(this,'user-info-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <div class="pop-user-avatar">
+                    <div class="avatar-img"></div>
+                    <div class="name" id="user-name"></div>
+                    <div class="role-name" id="role-name"></div>
+                </div>
+                <div id="pop-user-info" class="pop-user-info active">
+                    <div>
+                        <span>姓名</span>
+                        <input type="text" placeholder="请输入姓名" id="pop-full-name"
+                               onblur="notEmpty(this)">
+                        <span class="user-info-error not-empty">*此处不能为空</span>
+                    </div>
+                    <div>
+                        <span>性别</span>
+                        <select id="pop-gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>手机</span>
+                        <input type="text" placeholder="请输入手机号码" id="pop-phone"
+                               onblur="checkPhone(this,'user-info-error')">
+                        <span class="user-info-error" id="user-info-error">*请输入正确的手机号码</span>
+                    </div>
+                    <div>
+                        <span>邮箱</span>
+                        <input type="text" placeholder="请输入邮箱地址" id="pop-email"
+                               onblur="checkEmail(this,'email-error')">
+                        <span class="user-info-error" id="email-error">*请输入正确的邮箱地址</span>
+                    </div>
+                </div>
+                <div id="pop-user-pwd" class="pop-user-pwd">
+                    <div>
+                        <span>旧&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入旧密码" id="old-pwd">
+                    </div>
+                    <div>
+                        <span>新&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入新密码" id="new-pwd">
+                    </div>
+                    <div>
+                        <span>确认密码 </span>
+                        <input type="password" placeholder="请再次输入新密码" id="confirm-new-password"
+                               onblur="confirmPwd(this)">
+                        <span class="user-info-error" id="new-pwd-error">*输入密码与新密码不一致</span>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-btn">
+                <button class="submit-user-info" id="submit-user-info" data-btn="information"
+                        onclick="distinguishSubmit(this)"></button>
+                <button class="close-btn" onclick="closeBtn(this,'user-info-pop')"></button>
+            </div>
+        </div>
+
+        <!--警报弹窗-->
+        <div class="close-pop show-pop delete-pop alarm-pop" id="alarm-pop">
+            <div class="pop-title">
+                <div>故障</div>
+                <div class="close-btn" onclick="closeBtn(this,'alarm-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <table>
+                    <tr>
+                        <td>设备注册代码</td>
+                        <td id="alarm-pop-register-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备安装地址</td>
+                        <td id="alarm-pop-install-addr"></td>
+                    </tr>
+                    <tr>
+                        <td>设备内部编号</td>
+                        <td id="alarm-pop-inside-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备当前楼层</td>
+                        <td id="alarm-pop-current-floor"></td>
+                    </tr>
+                    <tr>
+                        <td>电梯是否有人</td>
+                        <td id="alarm-pop-anybody"></td>
+                    </tr>
+                    <tr>
+                        <td>关门是否到位</td>
+                        <td id="alarm-pop-whether-close"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" id="confirm-alarm-btn"
+                        onclick="closeBtn(this,'alarm-pop')
+                                 confirmAlarm(this)">
+                    报警实时运行状态确认
+                </button>
+            </div>
+        </div>
+
+        <!--新增或修改电梯弹窗-->
+        <div class="add-edit-pop close-pop show-pop" id="add-update-lift">
+            <div class="pop-title">
+                <div v-if="popData.isAddBtn">
+                    <i class="add-lift"></i><span class="pop-title-content">新增电梯</span>
+                </div>
+                <div v-else>
+                    <i class="edit-lift"></i><span class="pop-title-content">修改电梯</span>
+                </div>
+                <div class="close-btn" onclick="closeBtn(this,'add-update-lift')"></div>
+            </div>
+            <div class="pop-body">
+                <div>
+                    <div>
+                        <span class="required">*</span><span>设备出厂编号</span>
+                        <input v-model="popData.liftOutCode" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>设备注册代码</span>
+                        <input v-model="popData.liftRegisterCode" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>设备品种</span>
+                        <input @click="showLiftKindList()"
+                               @keyup="addLiftSelect.showKindSelect = false"
+                               v-model="popData.liftKind"
+                               type="text" disabled placeholder="点击右侧箭头打开下拉菜单">
+                        <i @click="showLiftKindList()" class="select-down"></i>
+                        <ul v-model="popData.liftKind"
+                            :class="{'show-select':addLiftSelect.showKindSelect}">
+                            <li @click="selectLiftKindLi(item.inst_type)"
+                                v-for="item in addLiftSelect.liftKindArr"
+                                :key="item.inst_type" v-cloak>
+                                {{item.inst_type}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>设备型号</span>
+                        <input v-model="popData.liftVersion" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>设备安装地址</span>
+                        <input v-model="popData.installAddr" type="text">
+                    </div>
+                    <div>
+                        <span>经度</span><input v-model="popData.longitude" type="text">
+                    </div>
+                    <div>
+                        <span>纬度</span><input v-model="popData.latitude" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>设备内部编号</span>
+                        <input v-model="popData.liftInsideCode" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>设备制造商</span>
+                        <input v-model="popData.liftManufacturer" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>进口设备代理商</span>
+                        <input v-model="popData.importAgent" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span>
+                        <span>
+                            设备出厂日期 <br>
+                            (YYYY.MM.DD)
+                        </span>
+                        <input v-model="popData.outDate" id="lift-out-date" type="text" placeholder="点击选择时间">
+                    </div>
+                    <div>
+                        <span>设备改造单位</span>
+                        <input v-model="popData.transformUnit" type="text">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                       <span>
+                            设备改造日期 <br>
+                            (YYYY.MM.DD)
+                        </span>
+                        <input v-model="popData.transformDate" id="lift-transform-date" type="text"
+                               placeholder="点击选择时间">
+                    </div>
+                    <div>
+                        <span class="required">*</span>
+                        <span>设备安装单位</span>
+                        <input v-model="popData.installUnit" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span>
+                        <span>
+                            设备安装日期 <br>
+                            (YYYY.MM.DD)
+                        </span>
+                        <input v-model="popData.installDate" name="" id="lift-install-date"
+                               placeholder="点击选择时间">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>
+                            设备维护保养 <br>
+                            单位名称
+                        </span>
+                        <input type="text" placeholder="点击右侧箭头打开下拉菜单" disabled
+                               v-model="popData.maintainUnitName"
+                               @keyup="addLiftSelect.showMaintainUnit=false"
+                               @click="addLiftSelect.showMaintainUnit=!addLiftSelect.showMaintainUnit">
+                        <i class="select-down"
+                           @click="addLiftSelect.showMaintainUnit=!addLiftSelect.showMaintainUnit"></i>
+                        <ul class="show-select" v-show="addLiftSelect.showMaintainUnit">
+                            <li v-for="item in addLiftSelect.maintainUnitArr"
+                                @click="selectMaintainUnit(item)" v-cloak>
+                                {{item.name}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>维护保养人员</span>
+                        <input type="text" placeholder="点击右侧箭头打开下拉菜单" disabled
+                               v-model="popData.maintainPersonArr"
+                               @click="addLiftSelect.showMaintainPerson=!addLiftSelect.showMaintainPerson">
+                        <i class="select-down"
+                           @click="addLiftSelect.showMaintainPerson=!addLiftSelect.showMaintainPerson"></i>
+                        <ul class="show-select" v-show="addLiftSelect.showMaintainPerson">
+                            <li v-for="(item,index) in addLiftSelect.maintainPersonArr"
+                                @click="selectMaintainPerson(item.name,index,item.id)" v-cloak>
+                                <input type="checkbox" :value="item.id"
+                                       :checked="isCheckedArr[index]"><span v-cloak>{{item.name}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>应急救援电话</span>
+                        <input v-model="popData.rescuePhone" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>使用小区单位</span>
+                        <input type="text"
+                               v-model="popData.communityUnit"
+                               @keyup="addLiftSelect.showCommunityUnit=false"
+                               @click="addLiftSelect.showCommunityUnit=!addLiftSelect.showCommunityUnit">
+                        <i class="select-down"
+                           @click="addLiftSelect.showCommunityUnit=!addLiftSelect.showCommunityUnit"></i>
+                        <ul class="show-select" v-show="addLiftSelect.showCommunityUnit">
+                            <li v-for="item in addLiftSelect.usingCommunityArr"
+                                @click="selectCommunityUnit(item.user)" v-cloak>
+                                {{item.user}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>站层数</span>
+                        <input v-model="popData.liftFloor" type="text"
+                               @keyup="isFloorInt(popData.liftFloor,checkInput.floorType)">
+                        <span class="error"
+                              :class="{'show-error':checkInput.floorType}">此项必须为正整数</span>
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>额定速度（m/s）</span>
+                        <input v-model="popData.ratedSpeed" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>额定载重量（kg）</span>
+                        <input v-model="popData.ratedWeight" type="text">
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>显示楼层</span>
+                        <input v-model="popData.showingFloor" type="text"
+                               @keyup="isShowingInt(popData.showingFloor,checkInput.showingType)">
+                        <span class="error"
+                              :class="{'show-error':checkInput.showingType}">此项必须为正整数</span>
+                    </div>
+                    <div>
+                        <span class="required">*</span><span>
+                            下次年检日期 <br>
+                            （MM）
+                        </span>
+                        <input v-model="popData.nextYearCheckDate" id="next-annual-check" placeholder="点击选择时间">
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" onclick="closeBtn(this,'add-update-lift')">取消</button>
+                <button class="submit-user-info" @click="submitAddLift()">确认</button>
+            </div>
+        </div>
+
+        <!--删除弹窗-->
+        <div class="close-pop show-pop delete-pop" id="delete-pop">
+            <div class="pop-title">
+                <div>提示信息</div>
+                <div class="close-btn" onclick="closeBtn(this,'delete-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <p id="delete-text">确认删除该设备？</p>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" onclick="closeBtn(this,'delete-pop')">取消</button>
+                <button class="submit-user-info" @click="confirmDeleteLift()">确认</button>
+            </div>
+        </div>
+
+        <!--二级弹窗-->
+        <!--除了closeBtn()的参数，不要更改二级弹窗的HTML-->
+        <!--每个页面只放一个，具体内容可用secondPop()传入-->
+        <div class="success-pop close-pop show-second" id="result-pop">
+            <div class="result-img" id="result-pop-bg"></div>
+            <div class="success-content">
+                <span id="operation-result"></span>
+            </div>
+            <button class="second-close-btn" onclick="closeBtn(this)"></button>
+        </div>
+
+        <!--加载中动画-->
+        <div id="loading" class="loading">
+            <img src="../img/loading.png" alt="">
+            <p>加载中</p>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../dist/js/general.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/zTree.v3/3.5.32/js/jquery.ztree.core.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.min.js"></script>
+<script src="../dist/lib/laydate/laydate.js"></script>
+<script src="../dist/js/lifts_manage.js"></script>
+</body>
+</html>

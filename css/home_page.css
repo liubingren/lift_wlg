@@ -1,0 +1,247 @@
+.content {
+  position: relative;
+  height: 840px;
+  min-width: 1106px;
+}
+.content .personal-unit-info {
+  position: relative;
+  width: 350px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.content .personal-unit-info .personal-card {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 320px;
+  padding-top: 60px;
+  padding-bottom: 100px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.content .personal-unit-info .personal-card .user-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #202133;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.content .personal-unit-info .personal-card .user-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 8px solid #f4f4f4;
+  box-sizing: border-box;
+  margin: 0 0 20px 80px;
+  width: 160px;
+  height: 160px;
+}
+.content .personal-unit-info .personal-card .user-role,
+.content .personal-unit-info .personal-card .user-unit {
+  font-size: 14px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+.content .personal-unit-info .personal-card .user-role span:first-of-type,
+.content .personal-unit-info .personal-card .user-unit span:first-of-type {
+  display: inline-block;
+  width: 70px;
+  height: 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(46, 89, 189, 0.8);
+}
+.content .personal-unit-info .personal-card .user-role span:last-of-type,
+.content .personal-unit-info .personal-card .user-unit span:last-of-type {
+  color: #535f6b;
+}
+.content .personal-unit-info .unit-card {
+  position: absolute;
+  top: 530px;
+  width: 100%;
+}
+.content .personal-unit-info .unit-card .unit-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #202133;
+  margin-bottom: 68px;
+}
+.content .personal-unit-info .unit-card .unit-card-title i {
+  position: absolute;
+  top: 2px;
+  left: 110px;
+  width: 27px;
+  height: 27px;
+  background: url("../img/general_sprite.png") -72px -66px;
+}
+.content .personal-unit-info .unit-card .unit-card-title span {
+  position: absolute;
+  right: 110px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) {
+  margin-bottom: 20px;
+  margin-left: 72px;
+  font-size: 14px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) i {
+  position: absolute;
+  left: 42px;
+  width: 20px;
+  height: 20px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) i.unit-name {
+  background: url("../img/general_sprite.png") -664px 0;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) i.unit-address {
+  background: url("../img/general_sprite.png") -637px 0;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) i.unit-phone {
+  background: url("../img/general_sprite.png") -173px -67px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) i.unit-email {
+  background: url("../img/general_sprite.png") -203px -63px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) i.contact-unit {
+  background: url("../img/general_sprite.png") -108px -67px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) span:first-of-type {
+  font-weight: bold;
+  color: #535f6b;
+  margin-right: 10px;
+}
+.content .personal-unit-info .unit-card div:not(.unit-card-title) span:last-of-type {
+  color: #a5b6c8;
+}
+.content .lifts-status {
+  position: absolute;
+  left: 360px;
+  top: 0;
+  height: 100%;
+}
+.content .lifts-status div {
+  border-radius: 4px;
+}
+.content .lifts-status .status-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+}
+.content .lifts-status .status-list div {
+  position: relative;
+  width: 20%;
+  margin-right: 10px;
+}
+.content .lifts-status .status-list div:last-of-type {
+  margin-right: 0;
+}
+.content .lifts-status .status-list div.lifts-total {
+  background-color: rgba(46, 89, 189, 0.4);
+}
+.content .lifts-status .status-list div.lifts-total .vertical-bar {
+  border-color: #2e59bd;
+}
+.content .lifts-status .status-list div.normal-lifts {
+  background-color: rgba(169, 216, 110, 0.4);
+}
+.content .lifts-status .status-list div.normal-lifts .vertical-bar {
+  border-color: #a9d86e;
+}
+.content .lifts-status .status-list div.early-warning-lifts {
+  background-color: rgba(248, 162, 15, 0.4);
+}
+.content .lifts-status .status-list div.early-warning-lifts .vertical-bar {
+  border-color: #f8a20f;
+}
+.content .lifts-status .status-list div.warning-lifts {
+  background-color: rgba(255, 31, 89, 0.4);
+}
+.content .lifts-status .status-list div.warning-lifts .vertical-bar {
+  border-color: #ff1f59;
+}
+.content .lifts-status .status-list div.offline-lifts {
+  background-color: rgba(191, 191, 191, 0.4);
+}
+.content .lifts-status .status-list div.offline-lifts .vertical-bar {
+  border-color: #bfbfbf;
+}
+.content .lifts-status .status-list div .status-title {
+  width: 100px;
+  padding: 20px 0 20px 30px;
+  font-size: 20px;
+}
+.content .lifts-status .status-list div .status-counts {
+  display: inline-block;
+  padding-left: 11%;
+  font-size: 40px;
+  font-weight: bold;
+  color: #202133;
+}
+@media (min-width: 1680px) {
+  .content .lifts-status .status-list div .status-counts {
+    padding-left: 35%;
+  }
+}
+.content .lifts-status .status-list div span {
+  font-size: 14px;
+  color: #535f6b;
+}
+.content .lifts-status .status-list div .vertical-bar {
+  position: absolute;
+  height: 20px;
+  top: 23px;
+  left: 20px;
+  border-left: 4px solid;
+}
+.content .lifts-status .status-chart {
+  position: relative;
+  height: 680px;
+  background-color: #fff;
+}
+.content .lifts-status .status-chart .chart-title span:nth-of-type(1) {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 4px;
+  height: 20px;
+  border-left: 4px solid #2e59bd;
+}
+.content .lifts-status .status-chart .chart-title span:nth-of-type(2) {
+  position: absolute;
+  top: 18px;
+  left: 30px;
+  width: 90px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+}
+.content .lifts-status .status-chart .total-counts {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+}
+.content .lifts-status .status-chart .total-counts span {
+  font-size: 14px;
+  color: #a4b5c7;
+}
+.content .lifts-status .status-chart .total-counts span:first-of-type {
+  font-size: 50px;
+  color: #202133;
+}
+.content .lifts-status .status-chart .total-counts span:nth-of-type(3) {
+  margin-left: 8px;
+  letter-spacing: 12px;
+}
+.content .lifts-status .status-chart .status-doughnut {
+  position: absolute;
+  top: 107px;
+  width: 100%;
+  height: 573px;
+}

@@ -1,0 +1,988 @@
+.app {
+  height: 1080px;
+}
+.app.detail-page {
+  height: 1920px;
+}
+.content {
+  position: relative;
+  height: 930px;
+  min-width: 1106px;
+}
+.content .content-title {
+  position: relative;
+  height: 36px;
+  line-height: 26px;
+  margin-left: 1em;
+  font-size: 16px;
+}
+.content .area-tree {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.lifts-list {
+  position: absolute;
+  left: 310px;
+  top: 36px;
+  height: 100%;
+}
+.lifts-list .search-bar {
+  height: 135px;
+  margin-bottom: 1px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.lifts-list .search-bar .lifts-list-title {
+  height: 20px;
+  padding-top: 20px;
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+}
+.lifts-list .search-bar .lifts-list-title i {
+  border-left: 4px solid #2e59bd;
+  margin-right: 10px;
+}
+.lifts-list .search-bar .search-btn-wrapper {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.lifts-list .search-bar .search-btn-wrapper label {
+  font-size: 14px;
+  margin-right: 10px;
+  color: #535f6b;
+}
+.lifts-list .search-bar .search-btn-wrapper input {
+  width: 200px;
+  height: 40px;
+  padding-left: 10px;
+  color: #a4b5c7;
+  border: 1px solid #a4b5c7;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+.lifts-list .search-bar .search-btn-wrapper button {
+  width: 60px;
+  height: 40px;
+  background-color: rgba(32, 33, 51, 0.7);
+  color: #fff;
+  font-size: 14px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  margin-left: 20px;
+}
+.lifts-list .search-bar .search-btn-wrapper button.usable {
+  background-color: #202133;
+}
+.lifts-list .list-body {
+  border-radius: 4px;
+  height: 794px;
+  padding: 0 40px 0 20px;
+  color: #fff;
+  background-color: #fff;
+}
+.lifts-list .list-body .button-group {
+  position: absolute;
+  top: 155px;
+  right: 45px;
+  width: 150px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #2e59bd;
+  cursor: pointer;
+}
+.lifts-list .list-body ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 65px;
+}
+.lifts-list .list-body ul .area-unit {
+  width: 220px;
+  height: 179px;
+  margin-bottom: 20px;
+}
+.lifts-list .list-body ul .area-unit.community-unit-wrapper {
+  margin-bottom: 60px;
+}
+.lifts-list .list-body ul .area-unit.shrink {
+  width: 20%;
+}
+.lifts-list .list-body ul .area-unit div.area-unit-content {
+  height: 100%;
+  margin-left: 20px;
+  background: url("../img/lifts_online.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.lifts-list .list-body ul .area-unit div.area-unit-content > div {
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  margin-left: 27px;
+}
+.lifts-list .list-body ul .area-unit div.area-unit-content .area-name {
+  padding: 27px 0;
+  font-size: 20px;
+}
+.lifts-list .list-body ul .area-unit div.area-unit-content .lifts-count {
+  font-size: 40px;
+  height: 40px;
+  line-height: 40px;
+  padding-bottom: 10px;
+}
+.lifts-list .list-body ul .area-unit div.area-unit-content .lifts-unit {
+  font-size: 14px;
+}
+.lifts-list .list-body ul .area-unit div.community-unit {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  width: 179px;
+  height: 220px;
+  background: url("../img/community_lifts.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  color: #fff;
+  overflow: hidden;
+}
+.lifts-list .list-body ul .area-unit div.community-unit .overflow-ellipsis {
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.lifts-list .list-body ul .area-unit div.community-unit.off-line {
+  background-image: url("../img/community_lifts_offline.png");
+}
+.lifts-list .list-body ul .area-unit div.community-unit.off-line button,
+.lifts-list .list-body ul .area-unit div.community-unit.off-line .lift-radio-wrapper {
+  background: #8a95b0;
+}
+.lifts-list .list-body ul .area-unit div.community-unit.check-fix {
+  background: #eabb5f;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #fff;
+}
+.lifts-list .list-body ul .area-unit div.community-unit.check-fix button,
+.lifts-list .list-body ul .area-unit div.community-unit.check-fix .lift-radio-wrapper {
+  background: #c4ca57;
+}
+@media (max-width: 1500px) {
+  .lifts-list .list-body ul .area-unit div.community-unit {
+    width: 146px;
+  }
+}
+.lifts-list .list-body ul .area-unit div.community-unit span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div {
+  margin-top: 12px;
+  margin-left: 0;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:first-of-type {
+  width: 72px;
+  margin-left: 5px;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:first-of-type .lift-code div {
+  margin: 8px 0 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:first-of-type .close-situation {
+  height: 74px;
+  background-image: url("../img/close_normally.png");
+  background-repeat: no-repeat;
+  background-position: 0 25px;
+  -webkit-background-size: 60% 60%;
+  background-size: 60% 60%;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:first-of-type .close-un-normal {
+  background-image: url("../img/close_un_normal.png");
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:first-of-type .lift-mode {
+  font-size: 14px;
+  font-weight: bold;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:nth-of-type(2) {
+  margin-right: 5px;
+  text-align: right;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:nth-of-type(2) .lift-floor span {
+  display: inline-block;
+  width: 95%;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:nth-of-type(2) .lift-floor .floor-counts {
+  font-size: 42px;
+  height: 47px;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:nth-of-type(2) .lift-direction {
+  height: 72px;
+  background: url("../img/lift_rising.png") no-repeat 15px 21px;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:nth-of-type(2) .lift-direction-down {
+  height: 72px;
+  background: url("../img/lift_falling.png") no-repeat 15px 21px;
+}
+.lifts-list .list-body ul .area-unit div.community-unit > div:nth-of-type(2) .lift-line-situation {
+  font-size: 14px;
+  font-weight: bold;
+  color: #20c22b;
+}
+.lifts-list .list-body ul .area-unit div.community-unit button {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  height: 40px;
+  line-height: 10px;
+  border-radius: 6px;
+  color: #fff;
+  background: #5c79c7;
+  cursor: pointer;
+}
+.lifts-list .list-body ul .area-unit div.community-unit .lift-radio-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18%;
+  min-width: 40px;
+  height: 40px;
+  -webkit-border-radius: 0 6px 6px 0;
+  -moz-border-radius: 0 6px 6px 0;
+  border-radius: 0 6px 6px 0;
+  background: #5c79c7;
+  overflow: hidden;
+}
+.lifts-list .list-body ul .area-unit div.community-unit .lift-radio-wrapper input[type='radio'] {
+  display: none;
+}
+.lifts-list .list-body ul .area-unit div.community-unit .lift-radio-wrapper label {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("../img/select_lift.png") no-repeat 2px;
+}
+.lifts-list .list-body ul .area-unit div.community-unit .lift-radio-wrapper .checked-label {
+  background: url("../img/selected_lift.png") no-repeat 2px;
+}
+.lift-detail-content .content-title {
+  position: relative;
+  height: 36px;
+  line-height: 26px;
+  margin-left: 1em;
+  font-size: 16px;
+}
+.lift-detail-content .content-title button {
+  position: absolute;
+  right: 30px;
+  font-size: 16px;
+  color: #535f6b;
+}
+.lift-detail-content .lift-running-video {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  height: 690px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.lift-detail-content .lift-running-video > div .title {
+  height: 18px;
+  line-height: 18px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+  border-left: 4px solid #202133;
+}
+.lift-detail-content .lift-running-video .running-video {
+  width: 55%;
+  margin-right: 20px;
+  font-weight: bold;
+}
+.lift-detail-content .lift-running-video .running-video .lift-register-code span,
+.lift-detail-content .lift-running-video .running-video .lift-inside-code span {
+  margin-left: 20px;
+  font-weight: normal;
+}
+.lift-detail-content .lift-running-video .running-video .video-wrapper {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #11def9;
+  border-radius: 4px;
+}
+.lift-detail-content .lift-running-video .running-video .video-wrapper video {
+  display: block;
+  width: 100%;
+  background-color: #000;
+}
+.lift-detail-content .lift-running-video .running-video .video-wrapper .btn-group {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px auto 20px;
+}
+.lift-detail-content .lift-running-video .running-video .video-wrapper .btn-group button {
+  width: 115px;
+  height: 40px;
+  background-color: rgba(46, 89, 189, 0.9);
+  margin-right: 30px;
+  color: #fff;
+  border-radius: 4px;
+}
+.lift-detail-content .lift-running-video .running-info {
+  width: 35%;
+}
+.lift-detail-content .lift-running-video .running-info div {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.lift-detail-content .lift-running-video .running-info div span {
+  font-weight: normal;
+}
+.lift-detail-content .lift-running-video .running-info .title {
+  margin-left: 0;
+  margin-bottom: 30px;
+}
+.lift-detail-content .lift-info-detail .info-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1px 0;
+  padding: 0 10%;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lift-detail-content .lift-info-detail .info-tab > div {
+  position: relative;
+  width: 200px;
+  text-indent: 50px;
+  color: #535f6b;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i {
+  position: absolute;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i:first-of-type {
+  width: 42px;
+  height: 50px;
+  left: 0;
+  top: -12px;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i:first-of-type.basic-icon {
+  background: url("../img/lift_detail_sprite.png") -321px -245px;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i:first-of-type.statistics-icon {
+  background: url("../img/lift_detail_sprite.png") -440px -186px;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i:first-of-type.electric-icon {
+  background: url("../img/lift_detail_sprite.png") -380px -186px;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i:first-of-type.computer-icon {
+  background: url("../img/lift_detail_sprite.png") -441px -245px;
+}
+.lift-detail-content .lift-info-detail .info-tab > div i:nth-of-type(2) {
+  width: 20px;
+  height: 20px;
+  left: 160px;
+  top: 3px;
+  background: url("../img/lift_detail_sprite.png") -300px -317px;
+}
+.lift-detail-content .lift-info-detail .info-tab .selected {
+  color: #2e59bd;
+}
+.lift-detail-content .lift-info-detail .info-tab .selected i:first-of-type {
+  top: 120px;
+  filter: drop-shadow(#2e59bd 0 -132px);
+}
+.lift-detail-content .lift-info-detail .info-tab .selected i:nth-of-type(2) {
+  background: url("../img/lift_detail_sprite.png") -300px -317px;
+  top: 124px;
+  filter: drop-shadow(#2e59bd -120px 0);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.lift-detail-content .lift-info-detail .info-content {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 0 10%;
+}
+.lift-detail-content .lift-info-detail .info-content > div {
+  display: none;
+  padding: 50px 0;
+}
+.lift-detail-content .lift-info-detail .info-content > div .title {
+  height: 18px;
+  line-height: 18px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+  border-left: 4px solid #202133;
+}
+.lift-detail-content .lift-info-detail .info-content .basic-info-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border-left: 1px solid rgba(164, 181, 199, 0.5);
+  border-top: 10px solid #f8a20f;
+}
+.lift-detail-content .lift-info-detail .info-content .basic-info-content table tr {
+  height: 45px;
+  border-bottom: 1px solid rgba(164, 181, 199, 0.5);
+}
+.lift-detail-content .lift-info-detail .info-content .basic-info-content table tr td {
+  border-right: 1px solid rgba(164, 181, 199, 0.5);
+  text-indent: 2em;
+}
+.lift-detail-content .lift-info-detail .info-content .basic-info-content table tr td.td-name {
+  width: 175px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #202133;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper > div {
+  position: relative;
+  width: 380px;
+  height: 250px;
+  border: 1px solid #77afed;
+  border-radius: 4px;
+  margin-left: 20px;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper > div div:first-child {
+  height: 50px;
+  line-height: 50px;
+  background-color: #77afed;
+  color: #fff;
+  font-weight: bold;
+  text-indent: 10px;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper > div div:first-child i {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 10px;
+  top: 10px;
+  background: url("../img/lift_detail_sprite.png") -500px -186px;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper > div div:nth-of-type(2) {
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: #2e59bd;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper > div div:nth-of-type(2) i {
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  top: 69px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: url("../img/lift_detail_sprite.png") -380px -10px;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper > div div:nth-of-type(2) span {
+  font-size: 16px;
+  font-weight: normal;
+  color: #a5b6c8;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper .total-running-frequency div:first-of-type i {
+  background: url("../img/lift_detail_sprite.png") -501px -245px;
+}
+.lift-detail-content .lift-info-detail .info-content .statistics-info-content .window-wrapper .total-running-frequency div:nth-of-type(2) i {
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  top: 69px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: url("../img/lift_detail_sprite.png") -10px -245px;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper > div {
+  position: relative;
+  width: 36%;
+  text-align: center;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper > div div:first-of-type {
+  padding-top: 60px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #a4b5c7;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper > div i {
+  display: inline-block;
+  width: 24px;
+  height: 55px;
+  background: url("../img/lift_detail_sprite.png") -10px -410px;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper > div i.bg-img {
+  position: absolute;
+  width: 250px;
+  height: 160px;
+  top: 25px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: url("../img/voltage_bg.png") no-repeat;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper > div div:nth-of-type(2) {
+  font-size: 20px;
+  color: #2e59bd;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper .kilowatt-hour i {
+  width: 52px;
+  height: 52px;
+  padding-top: 10px;
+  background: url('../img/lift_detail_sprite.png') -251px -235px;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper .voltage i {
+  width: 72px;
+  height: 52px;
+  padding-top: 10px;
+  background: url('../img/voltage.png') no-repeat 0 6px;
+}
+.lift-detail-content .lift-info-detail .info-content .electric-info-content .info-wrapper .electricity i {
+  width: 72px;
+  height: 52px;
+  padding-top: 10px;
+  background: url('../img/lift_detail_sprite.png') -170px -235px;
+}
+.lift-detail-content .lift-info-detail .info-content .computer-room-content .temperature {
+  width: 350px;
+  height: 215px;
+  margin: 0 auto;
+  text-align: center;
+  background: url("../img/lift_detail_sprite.png") -10px -10px;
+}
+.lift-detail-content .lift-info-detail .info-content .computer-room-content .temperature div:first-of-type {
+  padding-top: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #a4b5c7;
+}
+.lift-detail-content .lift-info-detail .info-content .computer-room-content .temperature i {
+  display: inline-block;
+  padding-top: 20px;
+  width: 24px;
+  height: 55px;
+  background: url("../img/lift_detail_sprite.png") -10px -400px;
+}
+.lift-detail-content .lift-info-detail .info-content .computer-room-content .temperature div:nth-of-type(2) {
+  font-size: 30px;
+  color: #2e59bd;
+}
+.lift-detail-content .lift-log-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.lift-detail-content .lift-log-table div {
+  width: 100%;
+  margin: 1px 0;
+  background-color: #fff;
+}
+.lift-detail-content .lift-log-table div div,
+.lift-detail-content .lift-log-table div table {
+  width: 80%;
+}
+.lift-detail-content .lift-log-table div div {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0 20px 10%;
+  height: 18px;
+  line-height: 18px;
+  text-indent: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+  border-left: 4px solid #202133;
+}
+.lift-detail-content .lift-log-table div div span:nth-of-type(2) {
+  padding-right: 5px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #a4b5c7;
+  cursor: pointer;
+}
+.lift-detail-content .lift-log-table div table {
+  margin-left: 10%;
+  margin-bottom: 50px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  text-align: center;
+}
+.lift-detail-content .lift-log-table div table thead {
+  color: #fff;
+  background-color: rgba(32, 33, 51, 0.8);
+  font-size: 16px;
+}
+.lift-detail-content .lift-log-table div table thead tr {
+  height: 50px;
+}
+.lift-detail-content .lift-log-table div table tbody {
+  border-left: 1px solid rgba(164, 181, 199, 0.5);
+  font-size: 14px;
+  color: #535f6b;
+}
+.lift-detail-content .lift-log-table div table tbody tr {
+  height: 40px;
+  border-bottom: 1px solid rgba(164, 181, 199, 0.5);
+}
+.lift-detail-content .lift-log-table div table tbody tr td {
+  border-right: 1px solid rgba(164, 181, 199, 0.5);
+}
+.lift-detail-content .lift-log-table div table tbody tr td .check-order-btn {
+  display: inline-block;
+  color: #2e59bd;
+  height: 30px;
+  line-height: 30px;
+  width: 80px;
+  border: 1px solid #a4b5c7;
+  border-radius: 4px;
+}
+.log-table-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.log-table-detail > div {
+  width: 100%;
+  margin: 1px 0;
+  background-color: #fff;
+}
+.log-table-detail > div div,
+.log-table-detail > div table {
+  width: 80%;
+}
+.log-table-detail > div div {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0 20px 10%;
+  height: 18px;
+  line-height: 18px;
+  text-indent: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #202133;
+  border-left: 4px solid #202133;
+}
+.log-table-detail > div div span:nth-of-type(2) {
+  padding-right: 5px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #a4b5c7;
+  cursor: pointer;
+}
+.log-table-detail > div table {
+  margin-left: 10%;
+  margin-bottom: 50px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  text-align: center;
+}
+.log-table-detail > div table thead {
+  color: #fff;
+  background-color: rgba(32, 33, 51, 0.8);
+  font-size: 16px;
+}
+.log-table-detail > div table thead tr {
+  height: 50px;
+}
+.log-table-detail > div table tbody {
+  border-left: 1px solid rgba(164, 181, 199, 0.5);
+  font-size: 14px;
+  color: #535f6b;
+}
+.log-table-detail > div table tbody tr {
+  height: 40px;
+  border-bottom: 1px solid rgba(164, 181, 199, 0.5);
+}
+.log-table-detail > div table tbody tr td {
+  border-right: 1px solid rgba(164, 181, 199, 0.5);
+}
+.log-table-detail .content-title {
+  position: relative;
+  height: 36px;
+  line-height: 26px;
+  margin-left: 1em;
+  font-size: 16px;
+  background: none;
+}
+.log-table-detail .content-title button {
+  position: absolute;
+  right: 30px;
+  font-size: 16px;
+  color: #535f6b;
+}
+.treeBox {
+  padding: 0;
+  margin: 20px 0 0 30px;
+  position: absolute;
+  overflow: hidden;
+  height: 890px;
+  width: 270px;
+}
+.treeBox .ztree {
+  margin: 0;
+  padding: 0;
+}
+.treeBox .ztree li {
+  padding: 4px 0;
+}
+.treeBox .ztree li span {
+  font-size: 18px;
+}
+.treeBox .ztree li span.noline_close {
+  background: url("../img/lifts_manage_sprite.png") -428px 3px;
+}
+.treeBox .ztree li span.noline_open {
+  background: url("../img/lifts_manage_sprite.png") -672px 6px;
+}
+.add-edit-pop {
+  display: none;
+  position: absolute;
+  width: 850px;
+  height: 840px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  box-shadow: 5px 5px 5px #aaa;
+  background-color: #fff;
+}
+.add-edit-pop .pop-title {
+  position: absolute;
+  height: 42px;
+  width: 100%;
+  line-height: 42px;
+  font-size: 18px;
+  border-bottom: 1px solid #2e59bd;
+}
+.add-edit-pop .pop-title i {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  width: 28px;
+  height: 22px;
+}
+.add-edit-pop .pop-title i.add-lift {
+  background: url("../img/lifts_manage_sprite.png") -585px 0;
+}
+.add-edit-pop .pop-title i.edit-lift {
+  background: url("../img/lifts_manage_sprite.png") -613px 0;
+}
+.add-edit-pop .pop-title .pop-title-content {
+  padding-left: 50px;
+}
+.add-edit-pop .pop-title .close-btn {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  background: url("../img/user_pop_sprite.png") -132px 1px;
+  border-radius: 50%;
+}
+.add-edit-pop .pop-body {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 73px;
+  margin-left: 5%;
+  font-size: 15px;
+}
+.add-edit-pop .pop-body > div {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  justify-content: space-between;
+}
+.add-edit-pop .pop-body > div > div {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.add-edit-pop .pop-body > div > div span {
+  display: flex;
+  align-items: center;
+  color: #535f6b;
+}
+.add-edit-pop .pop-body > div > div span.required {
+  position: absolute;
+  top: 11px;
+  left: -9px;
+  color: red;
+}
+.add-edit-pop .pop-body > div > div span.error {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: -125px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 8px;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 12px;
+}
+.add-edit-pop .pop-body > div > div input {
+  width: 225px;
+  height: 40px;
+  color: #535f6b;
+  font-size: 15px;
+  text-indent: 10px;
+  border: 1px solid #a4b5c7;
+  border-radius: 6px;
+}
+.add-edit-pop .pop-body > div > div input:focus {
+  border: 1px solid #535f6b;
+}
+.add-edit-pop .pop-body > div > div input::-webkit-input-placeholder {
+  color: #535f6b;
+}
+.add-edit-pop .pop-body > div > div input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #535f6b;
+}
+.add-edit-pop .pop-body > div > div input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #535f6b;
+}
+.add-edit-pop .pop-body > div > div input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #535f6b;
+}
+.add-edit-pop .pop-body > div > div select option {
+  width: 80%;
+  color: #fff;
+  background-color: rgba(35, 36, 53, 0.9);
+  border: none;
+}
+.add-edit-pop .pop-body > div > div ul {
+  display: none;
+}
+.add-edit-pop .pop-body > div > div ul.show-select {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 225px;
+  color: #fff;
+  background-color: rgba(35, 36, 53, 0.9);
+  z-index: 77;
+}
+.add-edit-pop .pop-body > div > div ul.show-select li {
+  display: flex;
+}
+.add-edit-pop .pop-body > div > div ul.show-select li:hover {
+  background-color: #2e59bd;
+}
+.add-edit-pop .pop-body > div > div ul.show-select li input {
+  width: 15px;
+  margin: 5px 5px 0 20px;
+}
+.add-edit-pop .pop-body > div > div ul.show-select li span {
+  color: #fff;
+}
+.add-edit-pop .pop-body > div > div .select-down {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: url("../img/select_down.png") no-repeat 5px 15px;
+  -webkit-background-size: 40%;
+  background-size: 40%;
+}
+.add-edit-pop .pop-body > div .government-annual-wrapper {
+  position: relative;
+  width: 225px;
+  height: 40px;
+  border: 1px solid #a4b5c7;
+  border-radius: 6px;
+  line-height: 40px;
+  text-indent: 10px;
+  color: #535f6b;
+}
+.add-edit-pop .pop-body > div .government-annual-wrapper .government-annual-check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.add-edit-pop .confirm-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+}
+.add-edit-pop .confirm-btn button {
+  width: 80px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.add-edit-pop .confirm-btn button.submit-user-info {
+  color: #fff;
+  background-color: #2e59bd;
+  margin-left: 110px;
+}
+.add-edit-pop .confirm-btn button.close-btn {
+  color: #535f6b;
+  background-color: rgba(83, 95, 107, 0.2);
+}
+.page-bar {
+  bottom: 69px;
+}
+.cover {
+  height: 966px;
+  min-width: 1106px;
+}

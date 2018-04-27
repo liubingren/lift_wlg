@@ -1,0 +1,53 @@
+/*----------取消默认样式----------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+input, button, select, textarea {
+    outline: none;
+    border: none;
+    background: none;
+}
+
+th, td {
+    font-weight: normal;
+}
+
+/*----------通用定位----------*/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.rel {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+
+/*----------清除浮动----------*/
+.clearfix {
+    clear: both;
+}
+
+/*----------改变datetimepicker的默认样式----------*/
+.datetimepicker table tr td span {
+    margin: 0;
+    width: 24%;
+}
+

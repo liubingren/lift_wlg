@@ -1,0 +1,137 @@
+@fontcolor: #535f6b;
+@boxShadow: 2px 2px 1px #aaa;
+// 文字色
+@mainColor: #2e59bd;
+@secondTitle: #535f6b;
+// 蓝色关闭按钮背景
+@blueCloseBtn: url("../img/user_pop_sprite.png") -132px 1px;
+.content{
+  background-color: #fff;
+  height: 89%;
+  overflow: auto;
+  min-width: 1106px;
+}
+.content-title{
+  display: flex;
+  background-color: #eceffc;
+  justify-content: space-between;
+  padding:10px 0 20px 15px;
+  color: @fontcolor;
+  span:first-child{
+    font-weight:bold;
+  }
+}
+.form-title{
+  background-color: #fff;
+  padding: 15px 0 15px 20px;
+  color: #333;
+  font-weight:bold;
+  border-bottom: 2px solid #f6f6f6;
+  border-radius: 5px;
+  i{
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 5px;
+    background: url("../img/lifts_manage_sprite.png") 109px top;
+  }
+  div:last-child{
+    margin-top: 30px;
+    margin-left: 40px;
+    label{
+      color: @secondTitle;
+      font-size: 16px;
+    }
+    input {
+      width: 200px;
+      height: 40px;
+      color: @secondTitle;
+      font-size: 15px;
+      text-indent: 10px;
+      border: 1px solid #a4b5c7;
+      border-radius: 6px;
+      margin-left: 10px;
+      &:focus {
+        border: 1px solid @secondTitle;
+      }
+    }
+    button{
+      font-size: 14px;
+      background-color: rgba(32, 33, 51, 0.7);
+      color: #fff;
+      border-radius: 4px;
+      padding: 9px 15px;
+      margin-left: 10px;
+      border: 1px solid @secondTitle;
+      &:hover {
+        border-color:#202133;
+      }
+    }
+  }
+}
+.form-content {
+  padding: 20px 25px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  //table
+  table{
+    width: 100%;
+    border-collapse:collapse;
+    border-spacing:0;
+    margin-top: 30px;
+    tbody{
+      tr{
+        font-size: 13px;
+        color: #535f6b;
+        text-align: center;
+      }
+    }
+    tr{
+      display: flex;
+      th{
+        color: #FFFFFF;
+        font-size: 16px;
+        height: 38px;
+        text-align: center;
+        line-height: 38px;
+        background-color: rgba(32,33,51,0.8);
+        flex:2;
+      }
+      th:first-child{
+        flex:1;
+      }
+      th:nth-child(2){
+        flex:1;
+      }
+      th:nth-child(6){
+        flex:4;
+      }
+      td{
+        height:38px;
+        line-height: 38px;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        flex:2;
+        border:solid rgba(164, 181, 199, 0.5);
+        border-width:0px 1px 1px 0px;
+      }
+      td:nth-child(1){
+        flex:1;
+        border-width:0px 1px 1px 1px;
+      }
+      td:nth-child(2){
+        flex:1;
+       }
+      td:nth-child(6){
+        flex:4;
+      }
+    }
+  }
+  .page-bar{
+    bottom: 40px;
+  }
+}

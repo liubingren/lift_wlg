@@ -1,0 +1,481 @@
+navColor = #202133
+mainFont = #2e59bd
+secondFont = #535f6b
+tableBorder = 1px solid rgba(164, 181, 199, 0.5)
+focusBorder = 1px solid #535f6b
+
+.content
+  min-width: 1106px;
+  .content-title
+    height: 36px;
+    line-height: 26px;
+    margin-left: 1em;
+    font-size: 16px;
+    color: secondFont
+  .content-body
+    .top-wrapper
+      padding: 20px 20px 5px
+      background-color: #fff
+      margin-bottom: 1px
+      .title
+        height: 18px
+        line-height: 18px
+        padding-left: 10px
+        font-size: 18px
+        font-weight: bold
+        color: navColor
+        border-left: 4px solid mainFont
+      .search-bar
+        margin: 30px 15px
+        border-radius 4px
+        font-size: 14px
+        color: secondFont
+        input
+          width: 200px
+          height: 40px
+          border: 1px solid #a4b5c7
+          border-radius: 4px
+          -webkit-box-sizing: border-box
+          -moz-box-sizing: border-box
+          box-sizing: border-box
+          margin: 0 20px 0 5px
+          font-size: 14px
+          text-indent: 10px
+          color: navColor
+          &:focus
+            border: 1px solid secondFont;
+        button
+          width: 60px
+          height: 40px
+          color: #fff
+          background-color: rgba(32, 33, 51, 0.7)
+          border-radius: 4px
+          margin-right: 10px
+          &.inputFocus
+            background-color: #202133
+    .table-wrapper
+      position: relative
+      background-color: #fff;
+      height: 600px
+      padding-top: 70px
+      .button-group
+        position: absolute;
+        top: 30px;
+        right: 8%;
+        width: 120px;
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: mainFont;
+        cursor: pointer;
+      table
+        width: 84%
+        margin: 0 auto
+        border-spacing: 0;
+        border-collapse: collapse;
+        text-align: center;
+        thead
+          color: #fff;
+          background-color: rgba(32, 33, 51, 0.8);
+          font-size: 16px;
+          border-left 1px solid rgba(32, 33, 51, 0.8)
+          tr
+            padding-left: 40px
+            height: 50px;
+        tbody
+          font-size: 14px;
+          color: secondTitle;
+          border-left: tableBorder;
+          tr
+            height: 40px;
+            border-bottom: tableBorder;
+            td
+              border-right: tableBorder;
+              input
+                &[type='checkbox']
+                  display: none
+              label
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-top: 5px
+                border: tableBorder
+              // input配合label自定义checkbox样式
+              input[type='checkbox']:checked + label
+                background: url("../img/checkbox.png") -4px no-repeat;
+                border: focusBorder
+      .page-bar {
+        bottom: 80px
+      }
+
+// 添加/修改弹窗
+.add-edit-pop
+  display: none
+  position: absolute
+  width: 865px
+  height: 840px
+  left: 50%
+  top: 50%
+  -webkit-transform: translate(-50%, -50%)
+  -moz-transform: translate(-50%, -50%)
+  -ms-transform: translate(-50%, -50%)
+  -o-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%)
+  border-radius: 4px
+  box-shadow: secondFont
+  background-color: #fff
+  .pop-title
+    position: absolute
+    height: 42px
+    width: 100%
+    line-height: 42px
+    font-size: 18px
+    font-weight: bold
+    color: mainFont
+    border-bottom: 1px solid mainFont
+    i
+      position: absolute
+      top: 12px
+      left: 20px
+      width: 28px
+      height: 22px
+      &.add-lift
+        background: url("../img/lifts_manage_sprite.png") -585px 0
+
+      &.edit-lift
+        background: url("../img/lifts_manage_sprite.png") -613px 0
+
+    .pop-title-content
+      padding-left: 50px
+
+    .close-btn
+      position: absolute
+      top: 7px
+      right: 20px
+      width: 28px
+      height: 28px
+      background: url("../img/user_pop_sprite.png") -132px 1px
+      border-radius: 50%
+
+  .pop-body
+    margin-top: 90px
+    padding: 0 40px
+    font-size: 15px
+    width: 785px
+    .select-community
+      width: 350px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      position: relative
+      margin-bottom: 10px
+      span
+        color: secondFont
+        font-size: 16px
+        &.required
+          position: absolute
+          top: 11px
+          left: -9px
+          color: red
+
+      input
+        width: 225px
+        height: 40px
+        color: secondFont
+        font-size: 15px
+        text-indent: 10px
+        border: 1px solid #a4b5c7
+        border-radius: 6px
+        &:focus
+          border: 1px solid secondFont
+
+      ul
+        display: none
+        &.show-select
+          display: block
+          position: absolute
+          right: 0
+          top: 40px
+          width: 225px
+          color: #fff
+          background-color: rgba(35, 36, 53, 0.9)
+          z-index: 77
+          li
+            display: flex
+            align-items: center
+            &:hover
+              background-color: mainFont
+
+            input
+              width: 15px
+              margin: 3px 5px 0 20px
+
+            span
+              color: #fff
+
+      .select-down
+        position: absolute
+        right: 0
+        width: 20px
+        height: 100%
+        background: url("../img/select_down.png") no-repeat 5px 15px
+        -webkit-background-size: 40%
+        background-size: 40%
+
+    .select-time
+      width: 350px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      position: relative
+      margin-bottom: 10px
+      span
+        color: secondFont
+        font-size: 16px
+        &.required
+          position: absolute
+          top: 11px
+          left: -9px
+          color: red
+      input
+        width: 225px
+        height: 40px
+        color: secondFont
+        font-size: 15px
+        text-indent: 10px
+        border: 1px solid #a4b5c7
+        border-radius: 6px
+        &:focus
+          border: 1px solid secondFont
+    .select-lifts
+      width: 100%
+      margin-top: 30px
+      div
+        position: relative
+        font-size: 16px
+        font-weight: bold
+        color: secondFont
+        margin-bottom: 10px
+        .required
+          position: absolute
+          left: -9px
+          color: red
+      .table-header {
+        margin-bottom: 0
+      }
+      .table-body {
+        height: 120px
+        overflow-y: scroll
+      }
+      table
+        width: 100%
+        margin: 0 auto
+        border-spacing: 0;
+        border-collapse: collapse;
+        text-align: center;
+        thead
+          color: #fff;
+          background-color: rgba(32, 33, 51, 0.8);
+          font-size: 16px;
+          tr
+            height: 50px;
+        tbody
+          max-height: 170px
+          overflow: hidden
+          border-left: tableBorder;
+          font-size: 14px;
+          color: secondTitle;
+          box-sizing: border-box
+          tr
+            height: 40px;
+            border-bottom: tableBorder;
+            td
+              border-right: tableBorder;
+              &:first-of-type {
+                width: 65px
+              }
+              &:nth-of-type(2) {
+                width: 170px
+              }
+              &:nth-of-type(3) {
+                width: 204px
+              }
+              &:nth-of-type(4) {
+                width: 203px
+              }
+              input
+                &[type='radio']
+                  display: none
+              label
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                margin-top: 5px
+                border: 5px solid #C9C9C9
+                border-radius 10px
+              // input配合label自定义checkbox样式
+              input[type='radio']:checked + label
+                background: secondFont;
+                width: 10px
+                height: 10px
+                border: 5px solid #C9C9C9
+    .scanning-copy
+      position: relative
+      font-size: 16px
+      font-weight bold
+      color: secondFont
+      margin-top: 30px
+      .required
+        position: absolute
+        left: -9px
+        color: red
+      .img-list {
+        padding-top: 30px;
+        ul {
+          display: flex;
+          overflow-x: scroll
+          li {
+            flex-shrink: 0
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            border: tableBorder;
+            flex-direction: column;
+            justify-content: flex-end;
+            margin: 0 33px 25px 0;
+            &.upload-files-preview {
+              background: url("../img/pdf_file.png") no-repeat 50% 40%;
+              span {
+                position: absolute
+                width: 90%
+                left: 5%
+                overflow: hidden
+                text-overflow: ellipsis
+                font-size: 14px
+                text-align: center
+                top: 120px
+              }
+            }
+            > button {
+              display: none;
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 32px;
+              width: 100%;
+              background-color: rgba(125, 135, 146, 0.5);
+              font-size: 14px;
+              color: #fff;
+            }
+            &:hover {
+              > button {
+                display: block;
+              }
+            }
+            img {
+              height: 100%;
+              width: 100%;
+            }
+            input {
+              height: 40px;
+              font-size: 14px;
+              text-indent: 3.5em;
+              background: url("../img/icon/add_img_name.png") no-repeat 20px 9px;
+            }
+          }
+          li.add-img-btn {
+            background-color: rgba(125, 135, 146, 0.1);
+            border: none;
+            text-align: center;
+            font-size: 18px;
+            color: secondFont;
+            display: flex;
+            justify-content: center;
+            > div {
+              position: relative;
+              height: 80px;
+              line-height: 120px;
+              background: url("../img/add_img_icon.png") no-repeat 75px 12px;
+              input {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+  .confirm-btn
+    position: absolute
+    display: flex
+    justify-content: center
+    width: 100%
+    bottom: 42px
+    button
+      width: 80px
+      height: 40px
+      border-radius: 6px
+      cursor: pointer
+      &.submit-user-info
+        color: #fff
+        background-color: mainFont
+        margin-left: 110px
+      &.close-btn
+        color: secondFont
+        background-color: rgba(83, 95, 107, 20%)
+
+// 政府弹窗部分样式
+.government-check-pop {
+  top: 560px
+  height: 940px
+  .required {
+    position: absolute
+    left: -9px
+    color: red
+  }
+  .bottom-wrapper {
+    display: flex
+    margin-top: 30px
+    .next-check-time {
+      display: flex
+      position: relative
+      width: 470px
+      height: 40px
+      line-height: 40px
+      font-size: 16px
+      font-weight bold
+      color: secondFont
+      margin-top: 10px
+      input {
+        width: 205px
+        height: 40px
+        color: secondFont
+        font-size: 15px
+        text-indent: 10px
+        margin-left: 10px
+        border: 1px solid #a4b5c7
+        border-radius: 6px
+      }
+    }
+    .check-status {
+      display: flex
+      position: relative
+      margin-top: 10px
+      font-size: 16px
+      height: 40px
+      line-height: 40px
+      font-weight bold
+      color: secondFont
+      div {
+        margin-right: 20px
+      }
+      span {
+        margin-right: 10px
+      }
+    }
+  }
+}

@@ -1,0 +1,303 @@
+navColor = #202133
+mainFont = #2e59bd
+secondFont = #535f6b
+tableBorder = 1px solid rgba(164, 181, 199, 0.5)
+focusBorder = 1px solid #535f6b
+
+.content
+  min-width: 1106px;
+  .content-title
+    height: 36px;
+    line-height: 26px;
+    margin-left: 1em;
+    font-size: 16px;
+    color: secondFont
+  .content-body
+    position: relative
+    .top-wrapper
+      padding: 20px 20px 5px
+      background-color: #fff
+      margin-bottom: 1px
+      .title
+        height: 18px
+        line-height: 18px
+        padding-left: 10px
+        font-size: 18px
+        font-weight: bold
+        color: navColor
+        border-left: 4px solid mainFont
+      .search-bar
+        margin: 30px 15px
+        border-radius 4px
+        font-size: 14px
+        color: secondFont
+        input
+          width: 200px
+          height: 40px
+          border: 1px solid #a4b5c7
+          border-radius: 4px
+          -webkit-box-sizing: border-box
+          -moz-box-sizing: border-box
+          box-sizing: border-box
+          margin: 0 20px 0 5px
+          font-size: 14px
+          text-indent: 10px
+          color: navColor
+          &:focus
+            border: 1px solid secondFont;
+        button
+          width: 60px
+          height: 40px
+          color: #fff
+          background-color: rgba(32, 33, 51, 0.7)
+          border-radius: 4px
+          margin-right: 10px
+    .area-tree {
+      position: absolute;
+      top: 144px
+      width: 300px;
+      height: 710px;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+    .table-wrapper
+      position: absolute;
+      left: 301px;
+      background-color: #fff;
+      height: 670px
+      padding-top: 40px
+      table
+        width: 90%
+        margin: 0 auto
+        border-spacing: 0;
+        border-collapse: collapse;
+        text-align: center;
+        thead
+          color: #fff;
+          background-color: rgba(32, 33, 51, 0.8);
+          font-size: 16px;
+          border-left 1px solid rgba(32, 33, 51, 0.8)
+          tr
+            padding-left: 40px
+            height: 50px;
+        tbody
+          font-size: 14px;
+          color: secondFont;
+          border-left: tableBorder;
+          tr
+            height: 40px;
+            border-bottom: tableBorder;
+            td
+              border-right: tableBorder;
+              &:last-of-type {
+                width: 240px
+                button {
+                  width: 60px
+                  height: 30px
+                  color: mainFont
+                  border tableBorder
+                  border-radius: 4px
+                  margin-right: 15px
+                }
+              }
+      .page-bar {
+        bottom: 80px
+      }
+
+.add-edit-pop
+  display: none
+  position: absolute
+  width: 480px
+  height: 490px
+  left: 50%
+  top: 500px
+  border 1px solid
+  -webkit-transform: translate(-50%, -50%)
+  -moz-transform: translate(-50%, -50%)
+  -ms-transform: translate(-50%, -50%)
+  -o-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%)
+  border-radius: 4px
+  box-shadow: secondFont
+  background-color: #fff
+  .pop-title
+    position: absolute
+    height: 42px
+    width: 100%
+    line-height: 42px
+    font-size: 18px
+    font-weight: bold
+    color: mainFont
+    border-bottom: 1px solid mainFont
+    i
+      position: absolute
+      top: 12px
+      left: 20px
+      width: 28px
+      height: 22px
+      &.add-lift
+        background: url("../img/lifts_manage_sprite.png") -585px 0
+
+      &.edit-lift
+        background: url("../img/lifts_manage_sprite.png") -613px 0
+
+    .pop-title-content
+      padding-left: 50px
+
+    .close-btn
+      position: absolute
+      top: 7px
+      right: 20px
+      width: 28px
+      height: 28px
+      background: url("../img/user_pop_sprite.png") -132px 1px
+      border-radius: 50%
+
+  .pop-body
+    margin-top: 79px;
+    font-size: 15px;
+    > div {
+      position: relative;
+      left: 69px
+      display: flex;
+      justify-content: space-between
+      width: 70%
+      margin-bottom: 20px;
+      span {
+        display: flex;
+        align-items: center;
+        color: secondFont;
+        &.required {
+          position: absolute;
+          top: 11px;
+          left: -9px;
+          color: red;
+        }
+        &.error {
+          display: none;
+          position: absolute;
+          top: 10px;
+          right: -125px;
+          height: 24px;
+          line-height: 24px;
+          padding: 0 8px;
+          font-size: 13px;
+          color: #fff;
+          border-radius: 12px;
+        }
+      }
+      input {
+        width: 225px;
+        height: 40px;
+        margin-left: 20px
+        color: secondFont;
+        font-size: 15px;
+        text-indent: 10px;
+        border: 1px solid #a4b5c7;
+        border-radius: 6px;
+        &.parent-menu {
+          background: #e0e6f6;
+        }
+        &:focus {
+          border: 1px solid secondFont;
+        }
+      }
+      input:
+      :-webkit-input-placeholder {
+        color: secondFont;
+      }
+      input:
+      :-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: secondFont;
+      }
+      input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: secondFont;
+      }
+      input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: secondFont;
+      }
+      ul {
+        display: none
+        &.show-select {
+          display: block;
+          position: absolute;
+          right: 0;
+          top: 38px;
+          width: 226px;
+          color: #fff;
+          background-color: rgba(35, 36, 53, 0.9);
+          z-index: 77;
+          border-radius 0 0 4px 4px
+          li {
+            display: flex;
+            text-indent: 10px
+            margin: 5px 0
+            &:hover {
+              background-color: mainFont;
+            }
+            input {
+              width: 15px;
+              margin: 5px 5px 0 20px;
+            }
+            span {
+              color: #fff;
+            }
+          }
+        }
+      }
+      .select-down {
+        position: absolute;
+        right: 0;
+        width: 20px;
+        height: 100%;
+        background: url("../img/select_down.png") no-repeat 5px 15px;
+        -webkit-background-size: 40%;
+        background-size: 40%;
+      }
+    }
+
+  .confirm-btn
+    position: absolute
+    display: flex
+    justify-content: center
+    width: 100%
+    bottom: 42px
+    button
+      width: 80px
+      height: 40px
+      border-radius: 6px
+      cursor: pointer
+      &.submit-user-info
+        color: #fff
+        background-color: mainFont
+        margin-left: 110px
+      &.close-btn
+        color: secondFont
+        background-color: rgba(83, 95, 107, 20%)
+
+// 树状图
+.treeBox {
+  padding: 0;
+  margin: 20px 0 0 30px;
+  position: absolute;
+  overflow: hidden;
+  height: 680px;
+  width: 270px;
+  .ztree {
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 4px 0;
+      span {
+        font-size: 18px;
+        &.noline_close {
+          background: url("../img/lifts_manage_sprite.png") -428px 3px;
+        }
+        &.noline_open {
+          background: url("../img/lifts_manage_sprite.png") -672px 6px;
+        }
+      }
+    }
+
+  }
+}

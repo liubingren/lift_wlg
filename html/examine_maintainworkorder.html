@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>保养工单（审核）</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/update_maintainworkorder.css">
+
+</head>
+<body>
+<div class="app">
+    <nav id="nav"></nav>
+    <div class="wrapper" id="wrapper">
+        <header id="header"></header>
+        <!--遮罩层-->
+        <!--一定要放在 .content 前面-->
+        <div id="cover"></div>
+        <div class="content-title">
+            <span>保养工单</span>
+            <span class="back">返回</span>
+        </div>
+        <div class="content" id="content">
+
+            <div class="form-title"><span style="border-left: 4px solid #2e59bc; padding-left: 10px">审核保养工单</span></div>
+            <!--新增工单-->
+            <div class="form-content bb">
+                <div class="big-form">
+                    <div class="left-form">
+                        <div>
+                            <div class="ip-box">
+                                <span>维保计划编号</span>
+                                <input type="text" id="maintplanId" disabled class="bg"/>
+                            </div>
+                            <div class="ip-box">
+                                <span><i>*</i>电梯使用小区</span>
+                                <input type="text" id="village" disabled class="bg"/>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div class="ip-box">
+                                <span style="font-weight: bold">存在问题</span>
+                                <input type="text" disabled class="bg" id="question1"/>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div class="ip-box">
+                                <span style="font-weight: bold">解决方法</span>
+                                <span id="solveMethod" class="spanDiv bg"></span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div class="ip-box">
+                                <input type="text" disabled class="bg" id="add_solveMethod"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-form">
+                        <div class="img-form">+</div>
+                        <div>上传图片</div>
+                        <div>（需上传勾选不正常的图片)</div>
+                    </div>
+                </div>
+                <!--备注编辑框-->
+                <div class="mark">
+                    <div>备注</div>
+                    <textarea name="remarks" class="remarks" id="remarks1" disabled style="background-color: rgba(46, 89, 189, 0.15)"></textarea>
+                </div>
+            </div>
+
+            <div class="form-content">
+                <div>
+                    <div class="ip-box">
+                        <span><i>*</i>维保模板类型</span>
+                        <input type="text" id="maintType" disabled class="bg"/>
+                    </div>
+                </div>
+                <div class="ip-box" style="margin-top: 20px">
+                    <span style="font-weight: bold;color: #333;">维保项目</span>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>维保项目（内容）</th>
+                        <th>维保基本要求</th>
+                        <th>结果（*必填）</th>
+                    </tr>
+                    </thead>
+                    <tbody id="maintInfo">
+                    </tbody>
+                </table>
+                <!--电梯信息-->
+                <div class="ip-box" style="margin-top: 20px">
+                    <span style="font-weight: bold;color: #333;"><i>*</i>电梯信息</span>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="flex: 3">设备注册代码</th>
+                        <th>设备内部编号</th>
+                        <th>设备安装地址</th>
+                    </tr>
+                    </thead>
+                    <tbody id="liftsInfo">
+                    </tbody>
+                </table>
+
+                <div class="ip-box" style="margin-top: 20px">
+                    <span style="font-weight: bold;color: #333;">维保信息</span>
+                </div>
+                <div style="margin-bottom: 10px">
+                    <div class="ip-box">
+                        <span><i>*</i>维保公司</span>
+                        <input type="text" id="maintenanceCom" disabled class="bg"/>
+                    </div>
+                    <div class="ip-box">
+                        <span><i>*</i>维保人员</span>
+                        <span id="maintenancepeople" atateType="" title="" class="spanDiv bg"></span>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="ip-box">
+                        <span><i>*</i>工单状态</span>
+                        <span id="handleState" atateType="" title="" class="spanDiv bg"></span>
+                    </div>
+                    <div class="ip-box" id="examineStateBar">
+                        <span><i>*</i>审核状态</span>
+                        <ul class="selectText" >
+                            <li class="select_box">
+                                <span id="examineState" examineType="" title=""></span>
+                                <ul class="son_ul" style="display: none;">
+                                    <li examineType="3" title="已审核">已审核</li>
+                                    <li examineType="2" title="审核未通过">审核未通过</li>
+                                    <li examineType="1" title="未审核">未审核</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mark" style="margin-bottom: 80px" id="markBar">
+                    <div>审核意见<span style="font-weight: normal">(审核不通过需填写)</span></div>
+                    <textarea name="remarks" class="remarks" id="examineremarks"></textarea>
+                </div>
+
+                <div class="btnBar">
+                    <a title="取消返回工单管理" href="workorderManage.html">取消</a>
+                    <button class="WorkMaintenance-approval" onclick="postExamineworkorder()">确定</button>
+                </div>
+            </div>
+        </div>
+        <!--图片设置弹窗-->
+        <!--每个弹窗顶部都要有 .close-pop -->
+        <div class="picture-pop close-pop show-pop" id="picture-pop">
+            <div class="pop-title">
+                <div class="titleLeft title"><i class="imgCheck-workorderManage"></i><span class="pop-title-content check">图片列表</span></div>
+                <div class="titleRight title"><i class="addImgUnclick_workorderManage"></i><span class="pop-title-content uncheck">新增图片</span></div>
+                <div class="close-btn" onclick="closeBtn(this,'picture-pop');document.getElementById('cover').classList.remove('cover')"></div>
+            </div>
+            <div class="pop-body">
+                <div class="pop-body-content imgList show">
+                    <div class="delete">删除</div>
+                    <div class="imgGroup-wrap">
+
+                    </div>
+                </div>
+                <div class="pop-body-content addImg hide">
+                    <div class="btn-group">
+                        <button>删除</button>
+                        <button>
+                            上传图片
+                            <input id="add-img" type="file" name="files" accept="image/*" multiple="">
+                        </button>
+                        <span>(注:单张图片不能超过5M)</span>
+                    </div>
+                    <div class="imgGroup-wrap">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--警报弹窗-->
+        <div class="close-pop show-pop delete-pop alarm-pop" id="alarm-pop">
+            <div class="pop-title">
+                <div>故障</div>
+                <div class="close-btn" onclick="closeBtn(this,'alarm-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <table>
+                    <tr>
+                        <td>设备注册代码</td>
+                        <td id="alarm-pop-register-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备安装地址</td>
+                        <td id="alarm-pop-install-addr"></td>
+                    </tr>
+                    <tr>
+                        <td>设备内部编号</td>
+                        <td id="alarm-pop-inside-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备当前楼层</td>
+                        <td id="alarm-pop-current-floor"></td>
+                    </tr>
+                    <tr>
+                        <td>电梯是否有人</td>
+                        <td id="alarm-pop-anybody"></td>
+                    </tr>
+                    <tr>
+                        <td>关门是否到位</td>
+                        <td id="alarm-pop-whether-close"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" id="confirm-alarm-btn"
+                        onclick="closeBtn(this,'alarm-pop')
+                                 confirmAlarm(this)">
+                    报警实时运行状态确认
+                </button>
+            </div>
+        </div>
+        <!--个人设置弹窗-->
+        <!--每个弹窗顶部都要有 .close-pop -->
+        <div class="user-info-pop close-pop show-pop" id="user-info-pop">
+            <div class="pop-title">
+                <i></i><span class="pop-title-content">个人设置</span>
+                <div class="select-tab">
+                    <span id="user-info-tab" class="active" onclick="togglePopBody(this)">个人信息</span>
+                    <span id="user-pwd-tab" onclick="togglePopBody(this)">密码修改</span>
+                </div>
+                <div class="close-btn" onclick="closeBtn(this,'user-info-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <div class="pop-user-avatar">
+                    <div class="avatar-img"></div>
+                    <div class="name" id="user-name"></div>
+                    <div class="role-name" id="role-name"></div>
+                </div>
+                <div id="pop-user-info" class="pop-user-info active">
+                    <div>
+                        <span>姓名</span>
+                        <input type="text" placeholder="请输入姓名" id="pop-full-name"
+                               onblur="notEmpty(this)">
+                        <span class="user-info-error not-empty">*此处不能为空</span>
+                    </div>
+                    <div>
+                        <span>性别</span>
+                        <select id="pop-gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>手机</span>
+                        <input type="text" placeholder="请输入手机号码" id="pop-phone"
+                               onblur="checkPhone(this,'user-info-error')">
+                        <span class="user-info-error" id="user-info-error">*请输入正确的手机号码</span>
+                    </div>
+                    <div>
+                        <span>邮箱</span>
+                        <input type="text" placeholder="请输入邮箱地址" id="pop-email"
+                               onblur="checkEmail(this,'email-error')">
+                        <span class="user-info-error" id="email-error">*请输入正确的邮箱地址</span>
+                    </div>
+                </div>
+                <div id="pop-user-pwd" class="pop-user-pwd">
+                    <div>
+                        <span>旧&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入旧密码" id="old-pwd">
+                    </div>
+                    <div>
+                        <span>新&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入新密码" id="new-pwd">
+                    </div>
+                    <div>
+                        <span>确认密码 </span>
+                        <input type="password" placeholder="请再次输入新密码" id="confirm-new-password"
+                               onblur="confirmPwd(this)">
+                        <span class="user-info-error" id="new-pwd-error">*输入密码与新密码不一致</span>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-btn">
+                <button class="submit-user-info" id="submit-user-info" data-btn="information"
+                        onclick="distinguishSubmit(this)"></button>
+                <button class="close-btn" onclick="closeBtn(this,'user-info-pop')"></button>
+            </div>
+        </div>
+
+        <!--二级弹窗-->
+        <!--除了closeBtn()的参数，不要更改二级弹窗的HTML-->
+        <!--每个页面只放一个，具体内容可用secondPop()传入-->
+        <div class="success-pop close-pop show-second" id="result-pop">
+            <div class="result-img" id="result-pop-bg"></div>
+            <div class="success-content">
+                <span id="operation-result"></span>
+            </div>
+            <button class="second-close-btn" onclick="closeBtn(this)"></button>
+        </div>
+
+        <!--加载中动画-->
+        <div id="loading" class="loading">
+            <img src="../img/loading.png" alt="">
+            <p>加载中</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../dist/lib/laydate/laydate.js"></script>
+<script src="../dist/js/general.js"></script>
+<script src="../dist/js/update_maintainworkorder.js"></script>
+<script>
+    $(function () {
+      $("#maintInfo").find("input").prop('disabled',true)
+    })
+</script>
+</body>
+</html>

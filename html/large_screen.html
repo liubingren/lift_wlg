@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大屏幕</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/large_screen.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header ">
+        <div class="time-bar" id="time-bar"></div>
+        <div class="header-title"></div>
+        <div class="backToHome">
+            <div style="cursor: pointer">
+                <span class="back"></span>
+                <span class="backText">进入平台首页</span>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-left">
+            <!--高德地图-->
+            <div class="device-distribution" id="distribution-map"></div>
+        </div>
+        <div class="content-right">
+            <div class="new-alarm">
+                <div class="title">
+                    最新警报
+                </div>
+                <div class="content">
+                   <div class="newalarmRound"></div>
+                   <ul style="overflow: hidden">
+
+                   </ul>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <div class="alarmTopTen">
+                    <div id="alarmTop" class="alarmTop" style="width: 94%;height:94%;margin:3% "></div>
+                </div>
+                <div class="alarmStatistics">
+                    <div class="alarmTitle">报警处理统计</div>
+                    <div class="container ripple danger">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                    <div class="warning" id="alarmStatis"> </div>
+                   <!-- <div id="alarmStatis" style="width: 94%;height:94%;margin:3% "></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.3&key=93fa02816286b65825aa82b4bbcd1403"></script>
+<script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.common.min.js"></script>
+<script src="../dist/js/large_screen.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>监测设备管理</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/testingEquipmentManager.css">
+</head>
+<body>
+<div class="app">
+    <nav id="nav"></nav>
+    <div class="wrapper" id="wrapper">
+        <header id="header"></header>
+        <div class="pageNav">
+            <div class="title">监测设备管理(异常列表)</div>
+        </div>
+        <div id="cover"></div>
+        <div class="content" id="content">
+            <div class="top">
+                <div class="title">
+                    <div>监测设备管理</div>
+                </div>
+                <div class="top_body">
+                    <span title="设备注册代码">设备注册代码</span>
+                    <input type="text" id="device_code">
+                    <span title="设备内部编号">设备内部编号</span>
+                    <input type="text" id="unit_id">
+                    <span title="处理状态">处理状态</span>
+                    <ul class="state selectText">
+                        <li class="select_box">
+                            <span id="stateSpan" state="" title="请选择处理状态">请选择处理状态</span>
+                            <ul class="son_ul" style="display: none;">
+                                <li state="0">未处理</li>
+                                <li state="1">已处理</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button class="query" id="query">查询</button>
+                    <button class="reset" id="reset">重置</button>
+                </div>
+                <div class="top-time">
+                    <span title="开始时间">开始时间</span>
+                    <input type="text" placeholder="请选择开始时间" id="start_t"/>
+                    <span title="结束时间">结束时间</span>
+                    <input type="text" placeholder="请选择结束时间" id="end_t"/>
+                </div>
+            </div>
+            <div class="center">
+                <div>
+                    <button id="alterToChanged">更改为已处理</button>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>设备注册代码</th>
+                        <th>设备内部编号</th>
+                        <th>设备安装地址</th>
+                        <th>故障代码</th>
+                        <th>故障时间</th>
+                        <th>处理状态</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <ul id="page-bar" class="page-bar" style="display: flex;">
+                <li id="first-page" class="first-page">首页</li>
+                <li id="pre-page" class="pre-page">上一页</li>
+                <li class="current-page"><span id="current-page">1</span>/<span id="total-page">2</span></li>
+                <li id="next-page" class="next-page">下一页</li>
+                <li id="last-page" class="last-page">尾页</li>
+                <li id="total-data" class="total-page">共15条</li>
+                <li class="jump-into">
+                    跳转到 <input type="text" id="input-page"> 页
+                    <button id="jump-into">GO</button>
+                </li>
+            </ul>
+        </div>
+
+        <!--个人设置弹窗-->
+        <!--每个弹窗顶部都要有 .close-pop -->
+        <div class="user-info-pop close-pop show-pop" id="user-info-pop">
+            <div class="pop-title">
+                <i></i><span class="pop-title-content">个人设置</span>
+                <div class="select-tab">
+                    <span id="user-info-tab" class="active" onclick="togglePopBody(this)">个人信息</span>
+                    <span id="user-pwd-tab" onclick="togglePopBody(this)">密码修改</span>
+                </div>
+                <div class="close-btn" onclick="closeBtn(this,'user-info-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <div class="pop-user-avatar">
+                    <div class="avatar-img"></div>
+                    <div class="name" id="user-name"></div>
+                    <div class="role-name" id="role-name"></div>
+                </div>
+                <div id="pop-user-info" class="pop-user-info active">
+                    <div>
+                        <span>姓名</span>
+                        <input type="text" placeholder="请输入姓名" id="pop-full-name"
+                               onblur="notEmpty(this)">
+                        <span class="user-info-error not-empty">*此处不能为空</span>
+                    </div>
+                    <div>
+                        <span>性别</span>
+                        <select id="pop-gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>手机</span>
+                        <input type="text" placeholder="请输入手机号码" id="pop-phone"
+                               onblur="checkPhone(this,'user-info-error')">
+                        <span class="user-info-error" id="user-info-error">*请输入正确的手机号码</span>
+                    </div>
+                    <div>
+                        <span>邮箱</span>
+                        <input type="text" placeholder="请输入邮箱地址" id="pop-email"
+                               onblur="checkEmail(this,'email-error')">
+                        <span class="user-info-error" id="email-error">*请输入正确的邮箱地址</span>
+                    </div>
+                </div>
+                <div id="pop-user-pwd" class="pop-user-pwd">
+                    <div>
+                        <span>旧&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入旧密码" id="old-pwd">
+                    </div>
+                    <div>
+                        <span>新&nbsp;密&nbsp;&nbsp;码</span>
+                        <input type="password" placeholder="请输入新密码" id="new-pwd">
+                    </div>
+                    <div>
+                        <span>确认密码 </span>
+                        <input type="password" placeholder="请再次输入新密码" id="confirm-new-password"
+                               onblur="confirmPwd(this)">
+                        <span class="user-info-error" id="new-pwd-error">*输入密码与新密码不一致</span>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-btn">
+                <button class="submit-user-info" id="submit-user-info" data-btn="information"
+                        onclick="distinguishSubmit(this)"></button>
+                <button class="close-btn" onclick="closeBtn('user-info-pop')"></button>
+            </div>
+        </div>
+
+        <!--警报弹窗-->
+        <div class="close-pop show-pop delete-pop alarm-pop" id="alarm-pop">
+            <div class="pop-title">
+                <div>故障</div>
+                <div class="close-btn" onclick="closeBtn(this,'alarm-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <table>
+                    <tr>
+                        <td>设备注册代码</td>
+                        <td id="alarm-pop-register-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备安装地址</td>
+                        <td id="alarm-pop-install-addr"></td>
+                    </tr>
+                    <tr>
+                        <td>设备内部编号</td>
+                        <td id="alarm-pop-inside-code"></td>
+                    </tr>
+                    <tr>
+                        <td>设备当前楼层</td>
+                        <td id="alarm-pop-current-floor"></td>
+                    </tr>
+                    <tr>
+                        <td>电梯是否有人</td>
+                        <td id="alarm-pop-anybody"></td>
+                    </tr>
+                    <tr>
+                        <td>关门是否到位</td>
+                        <td id="alarm-pop-whether-close"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" id="confirm-alarm-btn"
+                        onclick="closeBtn(this,'alarm-pop')
+                                 confirmAlarm(this)">
+                    报警实时运行状态确认
+                </button>
+            </div>
+        </div>
+
+        <!--删除弹窗-->
+        <div class="close-pop show-pop delete-pop" id="delete-pop">
+            <div class="pop-title">
+                <div>提示信息</div>
+                <div class="close-btn" onclick="closeBtn(this,'delete-pop')"></div>
+            </div>
+            <div class="pop-body">
+                <p id="delete-text">确认删除该设备？</p>
+            </div>
+            <div class="confirm-btn">
+                <button class="close-btn" onclick="closeBtn(this,'delete-pop')">取消</button>
+                <button class="submit-user-info" onclick="confirmAlterToChanged(this)">确认</button>
+            </div>
+        </div>
+
+        <!--二级弹窗-->
+        <!--除了closeBtn()的参数，不要更改二级弹窗的HTML-->
+        <!--每个页面只放一个，具体内容可用secondPop()传入-->
+        <div class="success-pop close-pop show-second" id="result-pop">
+            <div class="result-img" id="result-pop-bg"></div>
+            <div class="success-content">
+                <span id="operation-result"></span>
+            </div>
+            <button class="second-close-btn" onclick="closeBtn(this)"></button>
+        </div>
+
+        <!--加载中动画-->
+        <div id="loading" class="loading">
+            <img src="../img/loading.png" alt="">
+            <p>加载中</p>
+        </div>
+    </div>
+</div>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="../dist/js/general.js"></script>
+<script src="../dist/lib/laydate/laydate.js"></script>
+<script src="../dist/js/testingEquipmentManager.js"></script>
+</body>
+</html>
+
+
+

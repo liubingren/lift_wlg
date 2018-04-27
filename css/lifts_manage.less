@@ -1,0 +1,1076 @@
+// 文字色
+@mainColor: #2e59bd;
+@navColor: #202133;
+@secondTitle: #535f6b;
+@secondContent: #a5b6c8;
+// 特定色
+@navHoverBgc: rgba(46, 89, 189, 0.3);
+@normalLift: #20c22b;
+@offlineLift: #bfbfbf;
+@earlyWarningLift: #fff71f;
+@warningLift: #ff1f59;
+// 辅助色
+@backgroundColor: #eceffc;
+@cardColor: #fff;
+@chartColor: #f8a20f;
+@chartColor2: #15c0e5;
+@chartColor3: #a9d86e;
+@chartColor4: #11def9;
+// 字体大小
+@XXLFontSize: 24px;
+@XLFontSize: 20px;
+@h1Size: 18px;
+@h2Size: 16px;
+@liSize: 14px;
+@secondFontSize: 12px;
+// 各种长度
+@bodyWidth: 100%;
+@navWidth: 240px;
+@searchBarHeight: 135px;
+@listBodyHeight: 929-@searchBarHeight;
+// 弹窗阴影
+@boxShadow: 5px 5px 5px #aaa;
+// 蓝色关闭按钮背景
+@blueCloseBtn: url("../img/user_pop_sprite.png") -132px 1px;
+
+// 表格边框
+@tableBorder: 1px solid rgba(164, 181, 199, 0.5);
+
+.app {
+  height: 1080px;
+  &.detail-page {
+    height: 1920px;
+  }
+}
+
+.content {
+  position: relative;
+  height: 930px;
+  min-width: 1106px;
+  .content-title {
+    position: relative;
+    height: 36px;
+    line-height: 26px;
+    margin-left: 1em;
+    font-size: 16px;
+  }
+  .area-tree {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+}
+
+// 列表页
+.lifts-list {
+  position: absolute;
+  left: 310px;
+  top: 36px;
+  height: 100%;
+  .search-bar {
+    height: @searchBarHeight;
+    margin-bottom: 1px;
+    background-color: #fff;
+    border-radius: 4px;
+    .lifts-list-title {
+      height: 20px;
+      padding-top: 20px;
+      margin-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: @navColor;
+      i {
+        border-left: 4px solid @mainColor;
+        margin-right: 10px;
+      }
+    }
+    .search-btn-wrapper {
+      margin-top: 30px;
+      margin-left: 30px;
+      label {
+        font-size: 14px;
+        margin-right: 10px;
+        color: @secondTitle;
+      }
+      input {
+        width: 200px;
+        height: 40px;
+        padding-left: 10px;
+        color: #a4b5c7;
+        border: 1px solid #a4b5c7;
+        border-radius: 6px;
+        margin-right: 20px;
+      }
+      button {
+        width: 60px;
+        height: 40px;
+        background-color: rgba(32, 33, 51, 0.7);
+        color: #fff;
+        font-size: 14px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        margin-left: 20px;
+        &.usable {
+          background-color: @navColor;
+        }
+      }
+    }
+  }
+  .list-body {
+    border-radius: 4px;
+    height: @listBodyHeight;
+    padding: 0 40px 0 20px;
+    color: #fff;
+    background-color: #fff;
+    .button-group {
+      position: absolute;
+      top: 155px;
+      right: 45px;
+      width: 150px;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: @mainColor;
+      cursor: pointer;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 65px;
+      .area-unit {
+        width: 220px;
+        height: 179px;
+        margin-bottom: 20px;
+        &.community-unit-wrapper {
+          margin-bottom: 60px;
+        }
+        &.shrink {
+          width: 20%;
+          //min-width: 179px;
+        }
+        div {
+          &.area-unit-content {
+            height: 100%;
+            margin-left: 20px;
+            background: url("../img/lifts_online.png");
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            cursor: pointer;
+            > div {
+              overflow: hidden;
+              white-space: nowrap;
+              -ms-text-overflow: ellipsis;
+              text-overflow: ellipsis;
+              margin-left: 27px;
+            }
+            .area-name {
+              padding: 27px 0;
+              font-size: 20px;
+            }
+            .lifts-count {
+              font-size: 40px;
+              height: 40px;
+              line-height: 40px;
+              padding-bottom: 10px;
+            }
+            .lifts-unit {
+              font-size: 14px;
+            }
+          }
+          &.community-unit {
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            width: 179px;
+            height: 220px;
+            background: url("../img/community_lifts.png");
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            color: #fff;
+            overflow: hidden;
+            .overflow-ellipsis {
+              overflow: hidden;
+              -ms-text-overflow: ellipsis;
+              text-overflow: ellipsis;
+            }
+            &.off-line {
+              background-image: url("../img/community_lifts_offline.png");
+              button, .lift-radio-wrapper {
+                background: #8a95b0;
+              }
+            }
+            // 检修状态
+            &.check-fix {
+              background: #eabb5f;
+              border-radius: 5px;
+              box-sizing: border-box;
+              font-weight: bold;
+              color: #fff;
+              button, .lift-radio-wrapper {
+                background: #c4ca57;
+              }
+            }
+
+            @media (max-width: 1500px) {
+              width: 146px;
+            }
+            span {
+              font-size: 12px;
+              color: rgba(255, 255, 255, 0.5);
+            }
+            > div {
+              margin-top: 12px;
+              margin-left: 0;
+            }
+            > div:first-of-type {
+              width: 72px;
+              margin-left: 5px;
+              .lift-code {
+                div {
+                  margin: 8px 0 16px;
+                  font-size: 18px;
+                  font-weight: bold;
+                }
+              }
+              .close-situation {
+                height: 74px;
+                background-image: url("../img/close_normally.png");
+                background-repeat: no-repeat;
+                background-position: 0 25px;
+                -webkit-background-size: 60% 60%;
+                background-size: 60% 60%;
+              }
+              .close-un-normal {
+                background-image: url("../img/close_un_normal.png");
+              }
+              .lift-mode {
+                font-size: 14px;
+                font-weight: bold;
+              }
+            }
+            > div:nth-of-type(2) {
+              margin-right: 5px;
+              text-align: right;
+              .lift-floor {
+                span {
+                  display: inline-block;
+                  width: 95%;
+                }
+                .floor-counts {
+                  font-size: 42px;
+                  height: 47px;
+                }
+              }
+              .lift-direction {
+                height: 72px;
+                background: url("../img/lift_rising.png") no-repeat 15px 21px;
+              }
+              .lift-direction-down {
+                height: 72px;
+                background: url("../img/lift_falling.png") no-repeat 15px 21px;
+              }
+              .lift-line-situation {
+                font-size: 14px;
+                font-weight: bold;
+                color: @normalLift;
+              }
+            }
+            button {
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 80%;
+              height: 40px;
+              line-height: 10px;
+              border-radius: 6px;
+              color: #fff;
+              background: #5c79c7;
+              cursor: pointer;
+            }
+
+            .lift-radio-wrapper {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 18%;
+              min-width: 40px;
+              height: 40px;
+              -webkit-border-radius: 0 6px 6px 0;
+              -moz-border-radius: 0 6px 6px 0;
+              border-radius: 0 6px 6px 0;
+              background: #5c79c7;
+              overflow: hidden;
+              input[type='radio'] {
+                display: none;
+              }
+              label {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: url("../img/select_lift.png") no-repeat 2px;
+              }
+              .checked-label {
+                background: url("../img/selected_lift.png") no-repeat 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 详情页
+.lift-detail-content {
+  .content-title {
+    position: relative;
+    height: 36px;
+    line-height: 26px;
+    margin-left: 1em;
+    font-size: 16px;
+    button {
+      position: absolute;
+      right: 30px;
+      font-size: 16px;
+      color: @secondTitle;
+    }
+  }
+  .lift-running-video {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    height: 690px;
+    background-color: #fff;
+    border-radius: 4px;
+    > div {
+      .title {
+        height: 18px;
+        line-height: 18px;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: @navColor;
+        border-left: 4px solid @navColor;
+      }
+    }
+    .running-video {
+      width: 55%;
+      margin-right: 20px;
+      font-weight: bold;
+      .lift-register-code, .lift-inside-code {
+        span {
+          margin-left: 20px;
+          font-weight: normal;
+        }
+      }
+      .video-wrapper {
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #11def9;
+        border-radius: 4px;
+        video {
+          display: block;
+          width: 100%;
+          background-color: #000;
+        }
+        .btn-group {
+          display: flex;
+          justify-content: space-evenly;
+          margin: 30px auto 20px;
+          button {
+            width: 115px;
+            height: 40px;
+            background-color: rgba(46, 89, 189, 0.9);
+            margin-right: 30px;
+            color: #fff;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+    .running-info {
+      width: 35%;
+      div {
+        margin-left: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        span {
+          font-weight: normal;
+        }
+      }
+      .title {
+        margin-left: 0;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .lift-info-detail {
+    .info-tab {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1px 0;
+      padding: 0 10%;
+      height: 100px;
+      background-color: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      > div {
+        position: relative;
+        width: 200px;
+        text-indent: 50px;
+        color: @secondTitle;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        i {
+          position: absolute;
+          &:first-of-type {
+            width: 42px;
+            height: 50px;
+            left: 0;
+            top: -12px;
+            &.basic-icon {
+              background: url("../img/lift_detail_sprite.png") -321px -245px;
+            }
+            &.statistics-icon {
+              background: url("../img/lift_detail_sprite.png") -440px -186px;
+            }
+            &.electric-icon {
+              background: url("../img/lift_detail_sprite.png") -380px -186px;
+            }
+            &.computer-icon {
+              background: url("../img/lift_detail_sprite.png") -441px -245px;
+            }
+          }
+          &:nth-of-type(2) {
+            width: 20px;
+            height: 20px;
+            left: 160px;
+            top: 3px;
+            background: url("../img/lift_detail_sprite.png") -300px -317px;
+          }
+        }
+      }
+      .selected {
+        color: @mainColor;
+        i {
+          &:first-of-type {
+            top: 120px;
+            filter: drop-shadow(@mainColor 0 -132px);
+          }
+          &:nth-of-type(2) {
+            background: url("../img/lift_detail_sprite.png") -300px -317px;
+            top: 124px;
+            filter: drop-shadow(@mainColor -120px 0);
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+    .info-content {
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 0 10%;
+      > div {
+        display: none;
+        padding: 50px 0;
+        .title {
+          height: 18px;
+          line-height: 18px;
+          padding-left: 10px;
+          margin-bottom: 20px;
+          font-size: 18px;
+          font-weight: bold;
+          color: @navColor;
+          border-left: 4px solid @navColor;
+        }
+      }
+      .basic-info-content {
+        table {
+          width: 100%;
+          // 要使tr边框生效必须设置此属性
+          border-collapse: collapse;
+          border-left: @tableBorder;
+          border-top: 10px solid @chartColor;
+          tr {
+            height: 45px;
+            border-bottom: @tableBorder;
+            td {
+              border-right: @tableBorder;
+              text-indent: 2em;
+              &.td-name {
+                width: 175px;
+                font-size: 14px;
+                font-weight: bold;
+                color: @navColor;
+              }
+            }
+          }
+        }
+      }
+      .statistics-info-content {
+        //display: block;
+        .window-wrapper {
+          display: flex;
+          justify-content: center;
+          > div {
+            position: relative;
+            width: 380px;
+            height: 250px;
+            border: 1px solid #77afed;
+            border-radius: 4px;
+            margin-left: 20px;
+            div:first-child {
+              height: 50px;
+              line-height: 50px;
+              background-color: #77afed;
+              color: #fff;
+              font-weight: bold;
+              text-indent: 10px;
+              i {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                right: 10px;
+                top: 10px;
+                background: url("../img/lift_detail_sprite.png") -500px -186px;
+              }
+            }
+            div:nth-of-type(2) {
+              height: 200px;
+              line-height: 200px;
+              text-align: center;
+              font-size: 50px;
+              font-weight: bold;
+              color: @mainColor;
+              i {
+                position: absolute;
+                width: 155px;
+                height: 155px;
+                top: 69px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+                background: url("../img/lift_detail_sprite.png")  -380px -10px;
+              }
+              span {
+                font-size: 16px;
+                font-weight: normal;
+                color: @secondContent;
+              }
+            }
+          }
+          .total-running-frequency {
+            div:first-of-type {
+              i {
+                background: url("../img/lift_detail_sprite.png")  -501px -245px;
+              }
+            }
+            div:nth-of-type(2) {
+              i {
+                position: absolute;
+                width: 155px;
+                height: 155px;
+                top: 69px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+                background: url("../img/lift_detail_sprite.png") -10px -245px;
+              }
+            }
+          }
+        }
+      }
+      .electric-info-content {
+        .info-wrapper {
+          width: 80%;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          > div {
+            position: relative;
+            width: 36%;
+            //margin: 0 auto;
+            text-align: center;
+            div:first-of-type {
+              padding-top: 60px;
+              font-size: 14px;
+              font-weight: bold;
+              color: #a4b5c7;
+            }
+            i {
+              display: inline-block;
+              //padding-top: 10px;
+              width: 24px;
+              height: 55px;
+              background: url("../img/lift_detail_sprite.png") -10px -410px;
+              &.bg-img {
+                position: absolute;
+                width: 250px;
+                height: 160px;
+                top: 25px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+                background: url("../img/voltage_bg.png") no-repeat;
+                -webkit-background-size: contain;
+                background-size: contain;
+              }
+            }
+            div:nth-of-type(2) {
+              font-size: 20px;
+              color: @mainColor;
+            }
+          }
+          .kilowatt-hour {
+            i {
+              width: 52px;
+              height: 52px;
+              padding-top: 10px;
+              background: url('../img/lift_detail_sprite.png') -251px -235px
+            }
+          }
+          .voltage {
+            i {
+              width: 72px;
+              height: 52px;
+              padding-top: 10px;
+              background: url('../img/voltage.png') no-repeat 0 6px;
+            }
+          }
+          .electricity {
+            i {
+              width: 72px;
+              height: 52px;
+              padding-top: 10px;
+              background: url('../img/lift_detail_sprite.png')-170px -235px;
+            }
+          }
+        }
+      }
+      .computer-room-content {
+        .temperature {
+          width: 350px;
+          height: 215px;
+          margin: 0 auto;
+          text-align: center;
+          background: url("../img/lift_detail_sprite.png")  -10px -10px;
+          div:first-of-type {
+            padding-top: 60px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #a4b5c7;
+          }
+          i {
+            display: inline-block;
+            padding-top: 20px;
+            width: 24px;
+            height: 55px;
+            background: url("../img/lift_detail_sprite.png") -10px -400px;
+          }
+          div:nth-of-type(2) {
+            //padding-top: 80px;
+            font-size: 30px;
+            color: @mainColor;
+          }
+        }
+      }
+    }
+  }
+  .lift-log-table {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    div {
+      width: 100%;
+      margin: 1px 0;
+      background-color: #fff;
+      div, table {
+        width: 80%;
+      }
+      div {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0 20px 10%;
+        height: 18px;
+        line-height: 18px;
+        text-indent: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: @navColor;
+        border-left: 4px solid @navColor;
+        span:nth-of-type(2) {
+          padding-right: 5px;
+          font-size: 14px;
+          font-weight: normal;
+          color: #a4b5c7;
+          cursor: pointer;
+        }
+      }
+      table {
+        margin-left: 10%;
+        margin-bottom: 50px;
+        border-spacing: 0;
+        border-collapse: collapse;
+        text-align: center;
+        thead {
+          color: #fff;
+          background-color: rgba(32, 33, 51, 0.8);
+          font-size: 16px;
+          tr {
+            height: 50px;
+          }
+        }
+        tbody {
+          border-left: @tableBorder;
+          font-size: 14px;
+          color: @secondTitle;
+          tr {
+            height: 40px;
+            border-bottom: @tableBorder;
+            td {
+              border-right: @tableBorder;
+              .check-order-btn {
+                display: inline-block;
+                color: @mainColor;
+                height: 30px;
+                line-height: 30px;
+                width: 80px;
+                border: 1px solid #a4b5c7;
+                border-radius: 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.log-table-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  > div {
+    width: 100%;
+    margin: 1px 0;
+    background-color: #fff;
+    div, table {
+      width: 80%;
+    }
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin: 50px 0 20px 10%;
+      height: 18px;
+      line-height: 18px;
+      text-indent: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: @navColor;
+      border-left: 4px solid @navColor;
+      span:nth-of-type(2) {
+        padding-right: 5px;
+        font-size: 14px;
+        font-weight: normal;
+        color: #a4b5c7;
+        cursor: pointer;
+      }
+    }
+    table {
+      margin-left: 10%;
+      margin-bottom: 50px;
+      border-spacing: 0;
+      border-collapse: collapse;
+      text-align: center;
+      thead {
+        color: #fff;
+        background-color: rgba(32, 33, 51, 0.8);
+        font-size: 16px;
+        tr {
+          height: 50px;
+        }
+      }
+      tbody {
+        border-left: @tableBorder;
+        font-size: 14px;
+        color: @secondTitle;
+        tr {
+          height: 40px;
+          border-bottom: @tableBorder;
+          td {
+            border-right: @tableBorder;
+          }
+        }
+      }
+    }
+  }
+  .content-title {
+    position: relative;
+    height: 36px;
+    line-height: 26px;
+    margin-left: 1em;
+    font-size: 16px;
+    background: none;
+    button {
+      position: absolute;
+      right: 30px;
+      font-size: 16px;
+      color: @secondTitle;
+    }
+  }
+}
+
+// 树状图
+.treeBox {
+  padding: 0;
+  margin: 20px 0 0 30px;
+  position: absolute;
+  overflow: hidden;
+  height: 890px;
+  width: 270px;
+  .ztree {
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 4px 0;
+      span {
+        font-size: 18px;
+        &.noline_close {
+          background: url("../img/lifts_manage_sprite.png") -428px 3px;
+        }
+        &.noline_open {
+          background: url("../img/lifts_manage_sprite.png") -672px 6px;
+        }
+      }
+    }
+
+  }
+}
+
+// 添加/修改电梯弹窗
+.add-edit-pop {
+  display: none;
+  position: absolute;
+  width: 850px;
+  height: 840px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  box-shadow: @boxShadow;
+  background-color: #fff;
+  .pop-title {
+    position: absolute;
+    height: 42px;
+    width: 100%;
+    line-height: 42px;
+    font-size: 18px;
+    border-bottom: 1px solid @mainColor;
+    i {
+      position: absolute;
+      top: 12px;
+      left: 20px;
+      width: 28px;
+      height: 22px;
+      &.add-lift {
+        background: url("../img/lifts_manage_sprite.png") -585px 0;
+      }
+      &.edit-lift {
+        background: url("../img/lifts_manage_sprite.png") -613px 0;
+      }
+    }
+    .pop-title-content {
+      padding-left: 50px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 7px;
+      right: 20px;
+      width: 28px;
+      height: 28px;
+      background: @blueCloseBtn;
+      border-radius: 50%;
+    }
+  }
+  .pop-body {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 73px;
+    margin-left: 5%;
+    font-size: 15px;
+    > div {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+      justify-content: space-between;
+      > div {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        span {
+          display: flex;
+          align-items: center;
+          color: @secondTitle;
+          &.required {
+            position: absolute;
+            top: 11px;
+            left: -9px;
+            color: red;
+          }
+          &.error {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: -125px;
+            height: 24px;
+            line-height: 24px;
+            padding: 0 8px;
+            font-size: 13px;
+            color: #fff;
+            border-radius: 12px;
+          }
+        }
+        input {
+          width: 225px;
+          height: 40px;
+          color: @secondTitle;
+          font-size: 15px;
+          text-indent: 10px;
+          border: 1px solid #a4b5c7;
+          border-radius: 6px;
+          &:focus {
+            border: 1px solid @secondTitle;
+          }
+        }
+        input::-webkit-input-placeholder {
+          color: @secondTitle;
+        }
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: @secondTitle;
+        }
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color: @secondTitle;
+        }
+        input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: @secondTitle;
+        }
+        select {
+          option {
+            width: 80%;
+            color: #fff;
+            background-color: rgba(35, 36, 53, 0.9);
+            border: none;
+          }
+        }
+        ul {
+          display: none;
+          &.show-select {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            width: 225px;
+            color: #fff;
+            background-color: rgba(35, 36, 53, 0.9);
+            z-index: 77;
+            li {
+              display: flex;
+              &:hover {
+                background-color: @mainColor;
+              }
+              input {
+                width: 15px;
+                margin: 5px 5px 0 20px;
+              }
+              span {
+                color: #fff;
+              }
+            }
+          }
+        }
+        .select-down {
+          position: absolute;
+          right: 0;
+          width: 20px;
+          height: 100%;
+          background: url("../img/select_down.png") no-repeat 5px 15px;
+          -webkit-background-size: 40%;
+          background-size: 40%;
+        }
+      }
+      .government-annual-wrapper {
+        position: relative;
+        width: 225px;
+        height: 40px;
+        border: 1px solid #a4b5c7;
+        border-radius: 6px;
+        line-height: 40px;
+        text-indent: 10px;
+        color: @secondTitle;
+        .government-annual-check {
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
+      }
+    }
+  }
+  .confirm-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+    button {
+      width: 80px;
+      height: 40px;
+      border-radius: 6px;
+      cursor: pointer;
+      &.submit-user-info {
+        color: #fff;
+        background-color: @mainColor;
+        margin-left: 110px;
+      }
+      &.close-btn {
+        color: @secondTitle;
+        background-color: rgba(83, 95, 107, 20%);
+      }
+    }
+  }
+}
+
+.page-bar {
+  bottom: 69px;
+}
+
+.cover {
+  height: 966px;
+  min-width: 1106px;
+}
